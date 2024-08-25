@@ -9,13 +9,11 @@ const VocabList = () => {
           <div className="flex items-center mb-2">
             <div className="w-10 mr-4"></div> {/* 優先度の位置合わせ用 */}
             <div className="flex-1 grid grid-cols-8 px-4">
-              <div className="col-span-1 font-bold text-center pr-3">語句 </div>
-              <div className="col-span-1 font-bold text-center px-3">意味 </div>
-              <div className="col-span-2 font-bold text-center px-3">例文 </div>
-              <div className="col-span-2 font-bold text-center px-3">
-                例文訳{" "}
-              </div>
-              <div className="col-span-2 font-bold text-center px-3">メモ </div>
+              <div className="col-span-1 font-bold text-center pr-3">Word </div>
+              <div className="col-span-1 font-bold text-center px-3">Meanig </div>
+              <div className="col-span-2 font-bold text-center px-3">Example</div>
+              <div className="col-span-2 font-bold text-center px-3">Translation</div>
+              <div className="col-span-2 font-bold text-center px-3">Memo </div>
             </div>
           </div>
           <div className="space-y-3">
