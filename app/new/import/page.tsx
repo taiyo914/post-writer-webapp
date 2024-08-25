@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useState, FormEvent, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
 const DataForm: React.FC = () => {
   const [isTSV, setIsTSV] = useState<boolean>(true);
   const [data, setData] = useState<string>("");
+  const router = useRouter();
 
   const handleToggle = (format: "csv" | "tsv"): void => {
     setIsTSV(format === "tsv");
@@ -18,7 +20,8 @@ const DataForm: React.FC = () => {
     e.preventDefault();
     console.log("Submitted Data:", data);
     console.log("Format:", isTSV ? "TSV" : "CSV");
-    // ここにデータをAPIに送信するロジックを追加できます。
+    // ここでデータを送信する
+    router.push("/");
   };
 
   return (
@@ -79,9 +82,9 @@ const DataForm: React.FC = () => {
         />
         <button
           type="submit"
-          className="w-2/3 mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:bg-gray-800 focus:outline-none"
+          className="w-2/3 mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:opacity-75 focus:outline-none transition"
         >
-          Create Vocabs
+          Add from {isTSV?"TSV":"CSV"}
         </button>
       </form>
     </div>
