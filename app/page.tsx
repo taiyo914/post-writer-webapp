@@ -8,7 +8,7 @@ export default function Home() {
         <Link href="new" className="text-center w-1/2 py-2  font-semibold rounded-md shadow-md hover:bg-gray-200  transition-colors duration-300 border">
           Add New Vocab
         </Link>
-        <Link href="/" className="text-center w-1/2 py-2 border font-semibold rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-700 transition-colors duration-300">
+        <Link href="review" className="text-center w-1/2 py-2 border font-semibold rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-700 transition-colors duration-300">
           ➞ Review 
         </Link>
       </div>
