@@ -3,7 +3,7 @@ import { wordsData } from "../data/wordsData";
 
 const VocabList = () => {
   return (
-    <div className="p-4 ">
+    <>
       <div className="bg-white rounded-lg p-6 border shadow-md overflow-x-auto">
         <div className="min-w-[1200px]">
           <div className="flex items-center mb-2">
@@ -12,7 +12,9 @@ const VocabList = () => {
               <div className="col-span-1 font-bold text-center pr-3">語句 </div>
               <div className="col-span-1 font-bold text-center px-3">意味 </div>
               <div className="col-span-2 font-bold text-center px-3">例文 </div>
-              <div className="col-span-2 font-bold text-center px-3">例文訳 </div>
+              <div className="col-span-2 font-bold text-center px-3">
+                例文訳{" "}
+              </div>
               <div className="col-span-2 font-bold text-center px-3">メモ </div>
             </div>
           </div>
@@ -44,7 +46,7 @@ const VocabList = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

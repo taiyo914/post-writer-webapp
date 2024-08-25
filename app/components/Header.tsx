@@ -17,9 +17,6 @@ const Header = () => {
           <a href="#" className="text-gray-600 hover:text-gray-900">
             Services
           </a>
-          <a href="#" className="text-gray-600 hover:text-gray-900">
-            Contact
-          </a>
         </nav>
       </div>
     </header>
