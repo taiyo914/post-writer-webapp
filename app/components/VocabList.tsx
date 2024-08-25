@@ -10,7 +10,7 @@ const VocabList = () => {
             <div className="w-10 mr-4"></div> {/* 優先度の位置合わせ用 */}
             <div className="flex-1 grid grid-cols-8 px-4">
               <div className="col-span-1 font-bold text-center pr-3">Word </div>
-              <div className="col-span-1 font-bold text-center px-3">Meanig </div>
+              <div className="col-span-1 font-bold text-center px-3">Meaning </div>
               <div className="col-span-2 font-bold text-center px-3">Example</div>
               <div className="col-span-2 font-bold text-center px-3">Translation</div>
               <div className="col-span-2 font-bold text-center px-3">Memo </div>
