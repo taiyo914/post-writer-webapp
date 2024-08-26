@@ -39,3 +39,17 @@ body {
   object-fit: cover;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  transform: rotate(90deg);
+  right: 10px;
+}
+
+.swiper-button-prev {
+  top: 10px;
+}
+
+.swiper-button-next {
+  bottom: 10px;
+  top: auto;
+}
