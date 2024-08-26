@@ -54,12 +54,13 @@ const SwiperComponent = () => {
       </div>
       <Swiper
         navigation
-        pagination={{ clickable: true, type: "progressbar" }}
+        pagination={{ type: "progressbar" }}
         onSlideChange={handleSlideChange}
         modules={[Navigation, Pagination]}
+        spaceBetween={30}
         className="w-full max-w-3xl h-3/5 border p-2 rounded-lg"
       >
-        <SwiperSlide>
+        <SwiperSlide >
           <div className="h-full flex flex-col items-center justify-center text-3xl text-gray-500 opacity-20">
           <div className="text-3xl font-bold mb-4">Let's get started ! ➞</div>
             {/* 差し色のライン */}
@@ -67,31 +68,31 @@ const SwiperComponent = () => {
         </SwiperSlide>
         {wordsData.map((card, i) => (
           <React.Fragment key={i}>
-            <SwiperSlide>
+            <SwiperSlide >
               <div className="text-gray-400 pt-3 pl-3 ">Word</div>
               <div className="h-full flex items-center justify-center text-3xl -mt-8 px-20">
                 <div className="font-bold">{card.word}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide>
+            <SwiperSlide >
               <div className="text-gray-400 pt-3 pl-3 ">Meaning</div>
               <div className="w-full h-full  flex items-center justify-center text-3xl -mt-8 px-20">
                 <div className="font-bold">{card.meaning}</div>
               </div>
-            </SwiperSlide>
-            <SwiperSlide>
+            </SwiperSlide >
+            <SwiperSlide >
               <div className="text-gray-400 pt-3 pl-3 ">Example</div>
               <div className="w-full h-full flex items-center justify-center text-2xl -mt-8 px-20">
                 <div className="leading-normal">{card.example}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide>
+            <SwiperSlide  >
               <div className="text-gray-400 pt-3 pl-3 ">Translation</div>
               <div className="w-full h-full flex items-center justify-center text-2xl -mt-8 px-20">
                 <div className="leading-normal">{card.exampleTranslation}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide>
+            <SwiperSlide  >
               <div className="text-gray-400 pt-3 pl-3 ">Memo</div>
               <div className="w-full h-full flex items-center justify-center text-xl -mt-8 px-20">
                 <div className="leading-normal">{card.note}</div>
