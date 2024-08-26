@@ -192,6 +192,8 @@ export default function Form() {
             </button>
           </div>
         </form>
+
+        <div className="h-32"></div>
       </div>
     </>
   );

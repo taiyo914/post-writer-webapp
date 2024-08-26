@@ -19,6 +19,7 @@ export default function Home() {
         </Link>
       </div>
       <VocabList />
+      <div className="h-32"></div>
     </div>
   );
 }
