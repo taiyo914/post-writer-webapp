@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-2xl px-3 w-fit">Vocab</h1>
-        <Link href="/" className="text-sm font-semibold mb-1 px-2 py-1 rounded-md bg-gray-300 hover:opacity-75">
+        <Link href="/" className="text-sm font-semibold mb-1 px-2 py-1 rounded-md bg-gray-300 hover:opacity-75 shadow">
           Settings
         </Link>
       </div>
