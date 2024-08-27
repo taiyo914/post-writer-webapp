@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { wordsData } from "../data/wordsData";
+import { wordsData } from "../../data/wordsData";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper as SwiperType } from 'swiper';
+import { Swiper as SwiperType } from "swiper";
 
 const SwiperComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -34,7 +34,7 @@ const SwiperComponent = () => {
     <div className="h-screen p-4 flex flex-col items-center ">
       <Swiper
         navigation
-        pagination={{ clickable: true ,  type: "progressbar" }}
+        pagination={{ clickable: true, type: "progressbar" }}
         onSlideChange={handleSlideChange}
         modules={[Navigation, Pagination]}
         className="w-full max-w-3xl h-3/5 border p-2 rounded-lg"
@@ -53,8 +53,8 @@ const SwiperComponent = () => {
                 <div className="font-bold">{card.meaning}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide> 
-            <div className="text-gray-400 pt-3 pl-3 ">Example</div>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">Example</div>
               <div className="w-full h-full flex items-center justify-center text-2xl -mt-8 px-20">
                 <div className="leading-normal">{card.example}</div>
               </div>
@@ -85,7 +85,9 @@ const SwiperComponent = () => {
           onChange={handleSliderChange}
           className="w-2/3"
         />
-        <div className="px-2">{priorityValues[Math.floor(activeIndex / 5)]}</div>
+        <div className="px-2">
+          {priorityValues[Math.floor(activeIndex / 5)]}
+        </div>
       </div>
     </div>
   );
