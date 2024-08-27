@@ -1,7 +1,15 @@
+"use client"
+import { useState } from "react";
 import Link from "next/link";
 import VocabList from "./components/VocabList";
+import SettingsModal from "./components/SettingModal";
 
 export default function Home() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
   return (
     <div className="p-4 ">
       <div className="flex justify-center space-x-2 mb-4 p-1">
@@ -14,11 +22,15 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-2xl px-3 w-fit">Vocab</h1>
-        <Link href="/" className="text-sm font-semibold mb-1 px-2 py-1 rounded-md bg-gray-300 hover:opacity-75 shadow">
+        <button 
+          className="text-sm font-semibold mb-1 px-2 py-1 rounded-md bg-gray-300 hover:opacity-75 shadow"
+          onClick={toggleModal}
+        >
           Settings
-        </Link>
+        </button>
       </div>
       <VocabList />
+      <SettingsModal isOpen={isModalOpen} onClose={toggleModal} />
       <div className="h-32"></div>
     </div>
   );
