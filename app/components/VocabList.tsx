@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { wordsData } from "../data/wordsData";
 
-const VocabList = () => {
+interface VocabListProps {
+  settings: any;
+}
+
+const VocabList: React.FC<VocabListProps> = ({ settings }) => {
+  
+  const { sortOrder, displayCount, priorityRange, dateRange } = settings;
+
+  let filteredWords = wordsData
+  .filter(word => 
+    word.priority >= priorityRange[0] && word.priority <= priorityRange[1]
+  )
+  .filter(word => {
+    const wordDate = new Date(word.date); // word.dateはDateオブジェクトもしくは日付文字列と仮定
+    const startDate = dateRange[0] ? new Date(dateRange[0]) : null;
+    const endDate = dateRange[1] ? new Date(dateRange[1]) : null;
+
+    if (startDate && endDate) {
+      return wordDate >= startDate && wordDate <= endDate;
+    } else if (startDate) {
+      return wordDate >= startDate;
+    } else if (endDate) {
+      return wordDate <= endDate;
+    } else {
+      return true;
+    }
+  });
+
+  if (sortOrder === "日付順（新しい順）") {
+    filteredWords.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } else if (sortOrder === "日付順（古い順）") {
+    filteredWords.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  } else if (sortOrder === "優先度順（高い順）") {
+    filteredWords.sort((a, b) => b.priority - a.priority);
+  } else if (sortOrder === "優先度順（低い順）") {
+    filteredWords.sort((a, b) => a.priority - b.priority);
+  }
+
+  // 指定された個数だけ表示
+  filteredWords = filteredWords.slice(0, displayCount);
+
   return (
     <>
       <div className="bg-white rounded-lg p-6 border shadow-md overflow-x-auto">
@@ -17,7 +57,7 @@ const VocabList = () => {
             </div>
           </div>
           <div className="space-y-3">
-            {wordsData.map((word, index) => (
+            {filteredWords.map((word, index) => (
               <div key={index} className="flex items-center ">
                 <div className="flex justify-center items-center h-10 w-10 bg-gray-300 rounded-full text-lg font-bold mr-4">
                   {word.priority}

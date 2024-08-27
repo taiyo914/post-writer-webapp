@@ -9,6 +9,15 @@ export default function Home() {
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
+  const [settings, setSettings] = useState({
+    sortOrder: "日付順（新しい順）",
+    displayCount: 10,
+    priorityRange: [1, 10],
+    dateRange: ["", ""]
+  });
+  const handleSaveSettings = (newSettings: any) => {
+    setSettings(newSettings);
+  };
 
   return (
     <div className="p-4 ">
@@ -29,8 +38,8 @@ export default function Home() {
           Settings
         </button>
       </div>
-      <VocabList />
-      <SettingsModal isOpen={isModalOpen} onClose={toggleModal} />
+      <VocabList settings={settings} />
+      <SettingsModal isOpen={isModalOpen} onClose={toggleModal} onSave={handleSaveSettings}/>
       <div className="h-32"></div>
     </div>
   );
