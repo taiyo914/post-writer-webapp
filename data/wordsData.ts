@@ -32,7 +32,7 @@ export const wordsData = [
     example: "After several failed attempts, she finally threw in the towel.",
     exampleTranslation: "何度も失敗した後、彼女はついに諦めました。",
     note: "諦めることを決意した時に使われる表現。",
-    priority: 9,
+    priority: 4,
     date: "2024-08-25"
   },
   {
@@ -50,7 +50,7 @@ export const wordsData = [
     example: "Her comment really hit the nail on the head regarding the issue.",
     exampleTranslation: "彼女のコメントはその問題に関してまさに的を射ていました。",
     note: "物事を正確に指摘したり、真実を言い当てる時に使います。",
-    priority: 8,
+    priority: 3,
     date: "2024-08-24"
   },
   {
@@ -68,7 +68,7 @@ export const wordsData = [
     example: "He missed the boat by not applying for the job earlier.",
     exampleTranslation: "彼はもっと早くその仕事に応募しなかったことで好機を逃しました。",
     note: "チャンスを逃してしまった時に使われるフレーズ。",
-    priority: 7,
+    priority: 5,
     date: "2024-08-23"
   },
   {
@@ -113,7 +113,7 @@ export const wordsData = [
     example: "He had an epiphany about the solution to the problem while taking a shower.",
     exampleTranslation: "シャワーを浴びている時に問題の解決策についての直感的な理解がありました。",
     note: "突然のひらめきや理解を表現する単語。",
-    priority: 9,
+    priority: 3,
     date: "2024-08-20"
   },
   {
@@ -140,7 +140,7 @@ export const wordsData = [
     example: "They threw caution to the wind and invested all their savings in the new startup.",
     exampleTranslation: "彼らは思い切った行動に出て、新しいスタートアップに全ての貯金を投資しました。",
     note: "リスクを考えずに大胆な行動を取ることを表すフレーズ。",
-    priority: 7,
+    priority: 5,
     date: "2024-08-19"
   },
   {
@@ -149,7 +149,7 @@ export const wordsData = [
     example: "Her plans for the future are still somewhat nebulous.",
     exampleTranslation: "彼女の将来の計画はまだ曖昧です。",
     note: "はっきりとしない、曖昧な状況を表現する単語。",
-    priority: 7,
+    priority: 0,
     date: "2024-08-18"
   },
   {
@@ -158,7 +158,7 @@ export const wordsData = [
     example: "After finishing the report, they decided to call it a day and go home.",
     exampleTranslation: "レポートを終えた後、彼らは仕事を終えて帰宅することにしました。",
     note: "その日の仕事を終わらせることを意味するフレーズ。",
-    priority: 6,
+    priority: 1,
     date: "2024-08-18"
   },
   {
@@ -167,7 +167,7 @@ export const wordsData = [
     example: "He enjoys the solitude of the mountains on weekends.",
     exampleTranslation: "彼は週末に山での孤独を楽しんでいます。",
     note: "一人でいることを好む時や、その状態を表す単語。",
-    priority: 6,
+    priority: 2,
     date: "2024-08-17"
   },
   {
@@ -185,7 +185,7 @@ export const wordsData = [
     example: "She is the quintessential example of a modern artist.",
     exampleTranslation: "彼女は現代アーティストの典型的な例です。",
     note: "あるカテゴリーの典型を表す単語。",
-    priority: 10,
+    priority: 4,
     date: "2024-08-16"
   },
   {
@@ -212,7 +212,7 @@ export const wordsData = [
     example: "Losing that job was a blessing in disguise as it led to better opportunities.",
     exampleTranslation: "その仕事を失ったことが、結果的にもっと良い機会につながったので、災い転じて福となりました。",
     note: "最初は不運に見えるが、後で良い結果をもたらす出来事を指す。",
-    priority: 8,
+    priority: 4,
     date: "2024-08-13"
   },
   {
@@ -221,7 +221,7 @@ export const wordsData = [
     example: "Children are often very resilient and can adapt to new environments quickly.",
     exampleTranslation: "子供たちはしばしば回復力があり、新しい環境に素早く適応できます。",
     note: "困難な状況から立ち直る力を表現する単語。",
-    priority: 8,
+    priority: 3,
     date: "2024-08-13"
   },
   {
@@ -230,7 +230,7 @@ export const wordsData = [
     example: "To solve this problem, we need to think outside the box.",
     exampleTranslation: "この問題を解決するためには、固定観念にとらわれずに考える必要があります。",
     note: "創造的で独創的な考え方をすることを促すフレーズ。",
-    priority: 7,
+    priority: 0,
     date: "2024-08-11"
   },
   {
@@ -239,7 +239,7 @@ export const wordsData = [
     example: "Youth is fleeting, so make the most of it while you can.",
     exampleTranslation: "青春は儚いので、できるうちに最大限に活用してください。",
     note: "一時的な、すぐに過ぎ去るものを表現する単語。",
-    priority: 7,
+    priority: 3,
     date: "2024-08-10"
   },
   {
@@ -248,7 +248,7 @@ export const wordsData = [
     example: "With her experience, she will hit the ground running in this new role.",
     exampleTranslation: "彼女の経験があれば、新しい役割で即戦力となるでしょう。",
     note: "すぐに仕事や活動に効果的に取り組むことを表現するフレーズ。",
-    priority: 6,
+    priority: 9,
     date: "2024-08-10"
   },
   {
@@ -266,7 +266,7 @@ export const wordsData = [
     example: "She was on cloud nine when she heard the news.",
     exampleTranslation: "そのニュースを聞いて彼女はとても幸せでした。",
     note: "非常に幸せな状態を表現するフレーズ。",
-    priority: 6,
+    priority: 4,
     date: "2024-08-08"
   },
   {
@@ -284,7 +284,7 @@ export const wordsData = [
     example: "The brevity of his speech made it powerful.",
     exampleTranslation: "彼のスピーチの簡潔さがそれを強力なものにしました。",
     note: "短く簡潔でありながら意味を伝えることを表す単語。",
-    priority: 9,
+    priority: 1,
     date: "2024-08-05"
   },
   {
@@ -302,7 +302,7 @@ export const wordsData = [
     example: "His perseverance in the face of adversity was admirable.",
     exampleTranslation: "逆境に対する彼の忍耐力は賞賛に値しました。",
     note: "困難な状況でも諦めずに続ける姿勢を表す単語。",
-    priority: 8,
+    priority: 3,
     date: "2024-08-02"
   },
   {
@@ -320,7 +320,7 @@ export const wordsData = [
     example: "They held a clandestine meeting late at night.",
     exampleTranslation: "彼らは夜遅くに秘密の会合を開きました。",
     note: "特に秘密にされるべき活動や会合を指す単語。",
-    priority: 7,
+    priority: 5,
     date: "2024-08-01"
   },
   {
@@ -338,7 +338,7 @@ export const wordsData = [
     example: "The euphoria she felt after the concert lasted for hours.",
     exampleTranslation: "コンサートの後に感じた陶酔感が何時間も続きました。",
     note: "強い幸福感や興奮を表す単語。",
-    priority: 6,
+    priority: 3,
     date: "2024-07-28"
   },
   {
@@ -365,7 +365,7 @@ export const wordsData = [
     example: "Kudos to everyone who contributed to the success of the event.",
     exampleTranslation: "イベントの成功に貢献したすべての人に称賛を送ります。",
     note: "功績や成功に対する称賛を表す単語。",
-    priority: 10,
+    priority: 1,
     date: "2024-07-23"
   },
   {
@@ -383,7 +383,7 @@ export const wordsData = [
     example: "She is meticulous in her work, leaving no detail overlooked.",
     exampleTranslation: "彼女は仕事に細心の注意を払い、どんな細部も見逃しません。",
     note: "細かい部分にまで気を配る性格や姿勢を表現する単語。",
-    priority: 9,
+    priority: 7,
     date: "2024-07-20"
   },
   {
@@ -392,7 +392,7 @@ export const wordsData = [
     example: "We arrived at the station in the nick of time to catch the train.",
     exampleTranslation: "電車に乗るために、ぎりぎり間に合って駅に到着しました。",
     note: "非常にギリギリのタイミングで間に合った状況を表現するフレーズ。",
-    priority: 8,
+    priority: 1,
     date: "2024-07-18"
   },
   {
@@ -410,7 +410,7 @@ export const wordsData = [
     example: "She turned a blind eye to the mistake, not wanting to cause a scene.",
     exampleTranslation: "彼女は騒ぎを起こしたくなかったので、そのミスを見て見ぬふりをしました。",
     note: "意図的に問題を無視することを表現するフレーズ。",
-    priority: 7,
+    priority: 0,
     date: "2024-07-15"
   },
   {
@@ -437,7 +437,7 @@ export const wordsData = [
     example: "The whole experience was so surreal, like something out of a dream.",
     exampleTranslation: "その経験全体がとても非現実的で、まるで夢の中のようでした。",
     note: "現実離れした、夢のような状況を表す単語。",
-    priority: 6,
+    priority: 0,
     date: "2024-07-10"
   },
   {
@@ -446,7 +446,7 @@ export const wordsData = [
     example: "After that mistake, he's on thin ice with his boss.",
     exampleTranslation: "そのミスの後、彼は上司と危険な状況にあります。",
     note: "リスクを伴う危険な状況を表現するフレーズ。",
-    priority: 6,
+    priority: 3,
     date: "2024-07-08"
   }
 ];
