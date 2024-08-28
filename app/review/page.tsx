@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { wordsData } from "../data/wordsData";
+import { wordsData as preSliceWordsData} from "../data/wordsData";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -13,6 +13,7 @@ import Link from "next/link";
 
 const SwiperComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const wordsData = preSliceWordsData.slice(0,5); //一旦5個にスライスしておく
   const [priorityValues, setPriorityValues] = useState(
     wordsData.map((item) => item.priority)
   );
