@@ -34,6 +34,10 @@ const VocabList: React.FC<VocabListProps> = ({ settings }) => {
     localStorage.setItem("reviewWords", JSON.stringify(paginatedWords));
   }, [paginatedWords]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sortOrder, displayCount, priorityRange, dateRange]);
+
   return (
     <>
       <div className="bg-white rounded-lg p-6 border shadow-md overflow-x-auto">

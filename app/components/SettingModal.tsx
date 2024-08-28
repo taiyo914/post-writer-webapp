@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Settings } from "@/types/settings";
 
 interface SettingsModalProps {
@@ -16,24 +16,27 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   onSave,
 }) => {
   const [sortOrder, setSortOrder] = useState<string>(settings.sortOrder);
-  const [displayCount, setDisplayCount] = useState<number>(
-    settings.displayCount
-  );
-  const [priorityRange, setPriorityRange] = useState<[number, number]>(
-    settings.priorityRange
-  );
-  const [dateRange, setDateRange] = useState<[string, string]>(
-    settings.dateRange
-  );
+  const [displayCount, setDisplayCount] = useState<number>(settings.displayCount);
+  const [priorityRange, setPriorityRange] = useState<[number, number]>(settings.priorityRange);
+  const [dateRange, setDateRange] = useState<[string, string]>(settings.dateRange);
+
+  useEffect(() => {
+    setSortOrder(settings.sortOrder);
+    setDisplayCount(settings.displayCount);
+    setPriorityRange(settings.priorityRange);
+    setDateRange(settings.dateRange);
+  }, [settings]);
 
   const handleSave = () => {
-    onSave({
+    const newSettings = {
       sortOrder,
       displayCount,
       priorityRange,
       dateRange,
-    });
+    };
+    onSave(newSettings);
     //ここで設定情報をローカルストレージに保存
+    localStorage.setItem("userSettings", JSON.stringify(newSettings));
     onClose();
   };
 

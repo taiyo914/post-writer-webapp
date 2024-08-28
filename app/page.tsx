@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import VocabList from "./components/VocabList/VocabList";
 import SettingsModal from "./components/SettingModal";
@@ -10,15 +10,35 @@ export default function Home() {
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
+
+  const [loading, setLoading] = useState(true);
+
   const [settings, setSettings] = useState<Settings>({
     sortOrder: "日付順（新しい順）",
     displayCount: 10,
     priorityRange: [1, 10],
     dateRange: ["", ""],
-  }); //↑本来は、ローカルストレージに保存された前回の情報を初期値とする
+  }); 
+
+  useEffect(() => {
+    const savedSettings = localStorage.getItem("userSettings");
+    if (savedSettings) {
+      setSettings(JSON.parse(savedSettings));
+    }
+    setLoading(false);
+  }, []);
+
   const handleSaveSettings = (newSettings: Settings) => {
     setSettings(newSettings);
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 mx-auto max-w-[2000px]">
