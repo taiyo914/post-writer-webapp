@@ -70,20 +70,20 @@ export default function Form() {
       <div className="py-4 md:px-6 px-4 mx-auto max-w-3xl">
         <div className="flex justify-between items-center mb-2 px-1">
           <Link href="/" className="hover:opacity-65 transition duration-300">
-            ⬅ back
+            ⬅ 戻る
           </Link>
           <Link
             href="new/import"
             className="p-2 bg-gray-900 text-white rounded-md shadow hover:bg-gray-300 hover:text-gray-900 transition duration-300"
           >
-            Paste <span className=""> {"CSV/TSV"}</span>
+            <span className=""> {"CSV/TSV"}</span>からインポート
           </Link>
         </div>
         <form onSubmit={handleSubmit}>
           <div className=" p-6 border bg-white rounded-lg shadow-lg">
             <div className="mb-4">
               <label className="block text-gray-700 font-bold " htmlFor="word">
-                Word
+                語句
               </label>
               <input
                 type="text"
@@ -100,7 +100,7 @@ export default function Form() {
                 className="block text-gray-700 font-bold "
                 htmlFor="meaning"
               >
-                Meaning
+                意味
               </label>
               <input
                 type="text"
@@ -117,7 +117,7 @@ export default function Form() {
                 className="block text-gray-700 font-bold"
                 htmlFor="exampleSentence"
               >
-                Example Sentence
+                例文
               </label>
               <textarea
                 name="exampleSentence"
@@ -133,7 +133,7 @@ export default function Form() {
                 className="block text-gray-700 font-bold"
                 htmlFor="exampleTranslation"
               >
-                Example Translation
+                例文訳
               </label>
               <textarea
                 name="exampleTranslation"
@@ -146,7 +146,7 @@ export default function Form() {
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold" htmlFor="memo">
-                Memo
+                メモ
               </label>
               <textarea
                 name="memo"
@@ -159,7 +159,7 @@ export default function Form() {
 
             <div className="mb-6">
               <label className="block text-gray-700 font-bold mb-2">
-                Rating{" "}
+                優先度{" "}
               </label>
               <div className="flex">
                 <input
@@ -181,14 +181,14 @@ export default function Form() {
               type="submit"
               className="w-2/3 py-2 px-4 bg-gray-900 hover:bg-gray-700 text-white font-bold rounded-lg transition duration-300"
             >
-              Add
+              追加
             </button>
             <button
               type="button"
               onClick={handleSubmitAndContinue}
               className="w-2/3 py-2 px-4 bg-gray-300 hover:bg-gray-400 text-black font-bold rounded-lg  transition duration-300"
             >
-              Add and Continue
+              追加して新規作成
             </button>
           </div>
         </form>

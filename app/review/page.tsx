@@ -42,13 +42,13 @@ const SwiperComponent = () => {
             href="/" //今は簡易的にリンクを付けているが、データベースに状態を更新してから戻る
             className="px-4 py-2 border-2 font-semibold rounded-md shadow-sm hover:bg-gray-100 transition duration-300"
           >
-            Done
+            完 了
           </Link>
           <Link
-            href="edit" //ここもcardIndexによって動的に変える必要がある
-            className="p-2 font-semibold bg-gray-300 rounded-md shadow hover:bg-gray-400 transition duration-300"
+            href="#" //ここもcardIndexによって動的に変える必要がある
+            className="p-2  font-semibold bg-gray-300 rounded-md border-2 border-gray-300 shadow hover:bg-gray-400 hover:border-gray-400 transition duration-300"
           >
-            Edit Card
+            カードを編集
           </Link>
         </div>
       </div>
@@ -60,40 +60,39 @@ const SwiperComponent = () => {
         spaceBetween={30}
         className="w-full max-w-3xl h-3/5 border p-2 rounded-lg"
       >
-        <SwiperSlide >
+        <SwiperSlide>
           <div className="h-full flex flex-col items-center justify-center text-3xl text-gray-500 opacity-20">
-          <div className="text-3xl font-bold mb-4">Let's get started ! ➞</div>
-            {/* 差し色のライン */}
+            <div className="text-3xl font-bold mb-4">Let's get started ! ➞</div>
           </div>
         </SwiperSlide>
         {wordsData.map((card, i) => (
           <React.Fragment key={i}>
-            <SwiperSlide >
-              <div className="text-gray-400 pt-3 pl-3 ">Word</div>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">語句</div>
               <div className="h-full flex items-center justify-center text-3xl -mt-8 px-20">
                 <div className="font-bold">{card.word}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide >
-              <div className="text-gray-400 pt-3 pl-3 ">Meaning</div>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">意味</div>
               <div className="w-full h-full  flex items-center justify-center text-3xl -mt-8 px-20">
                 <div className="font-bold">{card.meaning}</div>
               </div>
-            </SwiperSlide >
-            <SwiperSlide >
-              <div className="text-gray-400 pt-3 pl-3 ">Example</div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">例文</div>
               <div className="w-full h-full flex items-center justify-center text-2xl -mt-8 px-20">
                 <div className="leading-normal">{card.example}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide  >
-              <div className="text-gray-400 pt-3 pl-3 ">Translation</div>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">例文訳</div>
               <div className="w-full h-full flex items-center justify-center text-2xl -mt-8 px-20">
                 <div className="leading-normal">{card.exampleTranslation}</div>
               </div>
             </SwiperSlide>
-            <SwiperSlide  >
-              <div className="text-gray-400 pt-3 pl-3 ">Memo</div>
+            <SwiperSlide>
+              <div className="text-gray-400 pt-3 pl-3 ">メモ</div>
               <div className="w-full h-full flex items-center justify-center text-xl -mt-8 px-20">
                 <div className="leading-normal">{card.note}</div>
               </div>
@@ -108,10 +107,14 @@ const SwiperComponent = () => {
               <div className="font-bold mb-3">Great job !</div>
               <div className="animate-bounce"> 🎉</div>
             </div>
-            <div className="text-lg">You've reviewed all the slides !</div>
-            <div>→ go to <Link href="/" className="underline underline-offset-2">Home</Link></div>
-
-            {/* ここに紙吹雪アニメーションなどを追加できます */}
+            <div className="text-lg">すべてのカードを復習しました！</div>
+            <div>
+              → {" "}
+              <Link href="/" className="underline underline-offset-2">
+                Home
+              </Link>
+              {" "}へ戻る
+            </div>
           </div>
         </SwiperSlide>
       </Swiper>

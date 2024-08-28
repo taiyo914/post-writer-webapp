@@ -34,22 +34,22 @@ export default function Home() {
           href="new"
           className="text-center w-1/2 py-2  font-semibold rounded-md shadow-md hover:bg-gray-200  transition-colors duration-300 border"
         >
-          Add New Vocab
+          単語を追加する
         </Link>
         <Link
           href="review"
           className="text-center w-1/2 py-2 border font-semibold rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-700 transition-colors duration-300"
         >
-          ➞ Review
+          復 習
         </Link>
       </div>
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-2xl px-3 w-fit">Vocab</h1>
         <button
-          className="text-sm font-semibold mb-1 px-2 py-1 rounded-md bg-gray-300 hover:opacity-75 shadow"
+          className="text-sm font-semibold mb-1 mr-1 px-5 py-2 rounded-md bg-gray-300 hover:opacity-75 shadow w-1/6"
           onClick={toggleModal}
         >
-          Settings
+          設 定
         </button>
       </div>
       <VocabList settings={settings} />

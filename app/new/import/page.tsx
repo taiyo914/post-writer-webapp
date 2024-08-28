@@ -28,16 +28,13 @@ const DataForm: React.FC = () => {
     <div className="py-4 md:px-6 px-4 mx-auto max-w-3xl">
       <div className="px-1 my-2">
         <Link href="/new" className="hover:opacity-65 transition duration-300 ">
-          ⬅ back
+          ⬅ 戻る
         </Link>
       </div>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center p-6 bg-white text-black rounded-md shadow-lg border"
       >
-        <h2 className="text-2xl font-bold mb-4">
-          Paste your {isTSV ? "TSV" : "CSV"} text
-        </h2>
         
         <div className="flex items-center mb-3 space-x-2">
           <button
@@ -59,6 +56,9 @@ const DataForm: React.FC = () => {
             CSV
           </button>
         </div>
+        <h3 className="text-lg font-bold mb-2">
+          {isTSV ? "TSV" : "CSV"}形式でテキストを入力
+        </h3>
         <p className="mb-4 text-gray-500 text-sm"> 
           {isTSV ? (
             <>
@@ -84,7 +84,7 @@ const DataForm: React.FC = () => {
           type="submit"
           className="w-2/3 mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:opacity-75 focus:outline-none transition"
         >
-          Add from {isTSV?"TSV":"CSV"}
+          {isTSV?"TSV":"CSV"}からインポート
         </button>
       </form>
     </div>
