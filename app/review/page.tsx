@@ -9,18 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper as SwiperType } from "swiper";
 import Link from "next/link";
+import { Word } from "@/types/word";
 
-interface Word {
-  word: string;
-  meaning: string;
-  example: string;
-  exampleTranslation: string;
-  note: string;
-  priority: number;
-  date: string;
-}
-
-const SwiperComponent = () => {
+const Review = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reviewWords, setReviewWords] = useState<Word[]>([]);
   const [priorityValues, setPriorityValues] = useState<number[]>([]);
@@ -157,4 +148,4 @@ const SwiperComponent = () => {
   );
 };
 
-export default SwiperComponent;
+export default Review;

@@ -1,16 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import VocabList from "./components/VocabList";
+import VocabList from "./components/VocabList/VocabList";
 import SettingsModal from "./components/SettingModal";
-
-type Settings = {
-  sortOrder: string;
-  // "日付順（新しい順）" | "日付順（古い順）" | "優先度順（高い順 " | "優先度順（低い順）"としたほうがより厳密。だが文言は今後も変更する可能性があるので、一旦stringで定義。
-  displayCount: number;
-  priorityRange: [number, number];
-  dateRange: [string, string];
-};
+import { Settings } from "@/types/settings";
 
 export default function Home() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -22,7 +15,7 @@ export default function Home() {
     displayCount: 10,
     priorityRange: [1, 10],
     dateRange: ["", ""],
-  }); //↑本来は、Cookieに保存された前回の情報を初期値とする
+  }); //↑本来は、ローカルストレージに保存された前回の情報を初期値とする
   const handleSaveSettings = (newSettings: Settings) => {
     setSettings(newSettings);
   };

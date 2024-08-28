@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { wordsData } from "../../data/wordsData";
+import { wordsData } from "../../../data/wordsData";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
