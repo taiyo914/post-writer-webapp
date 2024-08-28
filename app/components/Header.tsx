@@ -3,7 +3,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="bg-white shadow-md">
-      <div className="container mx-auto px-2 py-4 flex justify-between items-center">
+      <div className="max-w-[2000px] mx-auto px-5  py-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800">
           <Link href="/">Vocab Deck</Link>
         </h1>
