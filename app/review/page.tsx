@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { wordsData as preSliceWordsData } from "../data/wordsData";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -23,10 +22,8 @@ interface Word {
 
 const SwiperComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const wordsData = preSliceWordsData.slice(0, 5); //一旦5個にスライスしておく
   const [reviewWords, setReviewWords] = useState<Word[]>([]);
   const [priorityValues, setPriorityValues] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // ローディング状態を追加
 
   // ローカルストレージからreviewWordsキーで表示していた単語を取得
   useEffect(() => {
@@ -36,7 +33,6 @@ const SwiperComponent = () => {
       setReviewWords(words);
       setPriorityValues(words.map((item) => item.priority)); // priorityValuesを初期化
     }
-    setIsLoading(false); // ローディング完了
   }, []);
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,10 +51,6 @@ const SwiperComponent = () => {
 
   const isNotFirstOrLastSlide =
     activeIndex > 0 && activeIndex < reviewWords.length * 5 + 1;
-
-  if (isLoading) {
-    return <div>Loading...</div>; 
-  }
 
   return (
     <div className="h-screen p-4 flex flex-col items-center ">
