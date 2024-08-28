@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { wordsData } from "../data/wordsData";
 
 type Settings = {
@@ -66,6 +66,11 @@ const VocabList: React.FC<VocabListProps> = ({ settings }) => {
   const startIndex = (currentPage - 1) * displayCount;
   const endIndex = startIndex + displayCount;
   const paginatedWords = filteredWords.slice(startIndex, endIndex);
+
+  // 表示されてるデータをローカルストレージに保存(キーはreviewWords)
+  useEffect(() => {
+    localStorage.setItem('reviewWords', JSON.stringify(paginatedWords));
+  }, [paginatedWords]);
 
   return (
     <>

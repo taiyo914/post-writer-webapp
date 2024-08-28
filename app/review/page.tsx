@@ -1,22 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { wordsData as preSliceWordsData} from "../data/wordsData";
+import { wordsData as preSliceWordsData } from "../data/wordsData";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper as SwiperType } from "swiper";
 import Link from "next/link";
 
+interface Word {
+  word: string;
+  meaning: string;
+  example: string;
+  exampleTranslation: string;
+  note: string;
+  priority: number;
+  date: string;
+}
+
 const SwiperComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const wordsData = preSliceWordsData.slice(0,5); //一旦5個にスライスしておく
-  const [priorityValues, setPriorityValues] = useState(
-    wordsData.map((item) => item.priority)
-  );
+  const wordsData = preSliceWordsData.slice(0, 5); //一旦5個にスライスしておく
+  const [reviewWords, setReviewWords] = useState<Word[]>([]);
+  const [priorityValues, setPriorityValues] = useState<number[]>([]);
+  const [isLoading, setIsLoading] = useState(true); // ローディング状態を追加
+
+  // ローカルストレージからreviewWordsキーで表示していた単語を取得
+  useEffect(() => {
+    const storedWords = localStorage.getItem("reviewWords");
+    if (storedWords) {
+      const words = JSON.parse(storedWords) as Word[];
+      setReviewWords(words);
+      setPriorityValues(words.map((item) => item.priority)); // priorityValuesを初期化
+    }
+    setIsLoading(false); // ローディング完了
+  }, []);
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPriority = parseInt(e.target.value, 10);
@@ -33,7 +54,11 @@ const SwiperComponent = () => {
   };
 
   const isNotFirstOrLastSlide =
-    activeIndex > 0 && activeIndex < wordsData.length * 5 + 1;
+    activeIndex > 0 && activeIndex < reviewWords.length * 5 + 1;
+
+  if (isLoading) {
+    return <div>Loading...</div>; 
+  }
 
   return (
     <div className="h-screen p-4 flex flex-col items-center ">
@@ -66,7 +91,7 @@ const SwiperComponent = () => {
             <div className="text-3xl font-bold mb-4">Let's get started ! ➞</div>
           </div>
         </SwiperSlide>
-        {wordsData.map((card, i) => (
+        {reviewWords.map((card, i) => (
           <React.Fragment key={i}>
             <SwiperSlide>
               <div className="text-gray-400 pt-3 pl-3 ">語句</div>
@@ -110,11 +135,11 @@ const SwiperComponent = () => {
             </div>
             <div className="text-lg">すべてのカードを復習しました！</div>
             <div>
-              → {" "}
+              →{" "}
               <Link href="/" className="underline underline-offset-2">
                 Home
-              </Link>
-              {" "}へ戻る
+              </Link>{" "}
+              へ戻る
             </div>
           </div>
         </SwiperSlide>
