@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { wordsData } from "../data/wordsData";
 
+type Settings = {
+  sortOrder: string;
+  // "日付順（新しい順）" | "日付順（古い順）" | "優先度順（高い順 " | "優先度順（低い順）"としたほうがより厳密
+  displayCount: number;
+  priorityRange: [number, number];
+  dateRange: [string, string];
+};
+
 interface VocabListProps {
-  settings: any;
+  settings: Settings;
 }
 
 const VocabList: React.FC<VocabListProps> = ({ settings }) => {
@@ -10,11 +18,13 @@ const VocabList: React.FC<VocabListProps> = ({ settings }) => {
   const { sortOrder, displayCount, priorityRange, dateRange } = settings;
 
   let filteredWords = wordsData
+  //優先度でフィルター
   .filter(word => 
     word.priority >= priorityRange[0] && word.priority <= priorityRange[1]
   )
+  //日付でフィルター
   .filter(word => {
-    const wordDate = new Date(word.date); // word.dateはDateオブジェクトもしくは日付文字列と仮定
+    const wordDate = new Date(word.date); 
     const startDate = dateRange[0] ? new Date(dateRange[0]) : null;
     const endDate = dateRange[1] ? new Date(dateRange[1]) : null;
 
@@ -28,7 +38,7 @@ const VocabList: React.FC<VocabListProps> = ({ settings }) => {
       return true;
     }
   });
-
+  //sortメソッドで並び替え
   if (sortOrder === "日付順（新しい順）") {
     filteredWords.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } else if (sortOrder === "日付順（古い順）") {
