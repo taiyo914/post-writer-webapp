@@ -5,7 +5,7 @@ export const wordsData = [
     example: "In a nutshell, the project failed due to a lack of communication.",
     exampleTranslation: "要するに、プロジェクトはコミュニケーション不足で失敗しました。",
     note: "要点を簡潔に伝える際に使うフレーズ。",
-    priority: 10,
+    priority: 7,
     date: "2024-08-27"
   },
   {
@@ -86,7 +86,7 @@ export const wordsData = [
     example: "I’m feeling a bit under the weather today, so I’ll stay home.",
     exampleTranslation: "今日は少し体調が悪いので、家にいます。",
     note: "体調不良の時に使うカジュアルな表現。",
-    priority: 7,
+    priority: 10,
     date: "2024-08-22"
   },
   {
