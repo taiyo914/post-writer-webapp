@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Keyboard, Mousewheel } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -64,8 +64,10 @@ const Review = () => {
       <Swiper
         navigation
         pagination={{ type: "progressbar" }}
+        keyboard={{enabled: true}}
+        mousewheel={{ forceToAxis: true }} //設定で縦スクロールも選べるようにするとよい
         onSlideChange={handleSlideChange}
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Keyboard, Mousewheel]}
         spaceBetween={30}
         className="w-full max-w-3xl h-3/5 border p-2 rounded-lg"
       >
