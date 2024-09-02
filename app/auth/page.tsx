@@ -14,6 +14,8 @@ export default function AuthPage() {
 
   const handleSignUp = async () => {
     setLoading(true);
+    setError(null);
+    setSignUpSuccess(false);
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -31,6 +33,7 @@ export default function AuthPage() {
 
   const handleSignIn = async () => {
     setLoading(true);
+    setError(null);
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -91,7 +94,7 @@ export default function AuthPage() {
           新規アカウントが作成されました。確認メールをご確認ください。
         </p>
       )}
-      {error && <p className="text-red-500 mt-2">{error}</p>}
+       {error && <p className="text-red-500 mt-2">Error: {error}</p>}
     </div>
   );
 }
