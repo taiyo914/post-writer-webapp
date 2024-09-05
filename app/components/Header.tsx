@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOutBtn from "./SignOutBtn";
 
 const Header = () => {
   return (
@@ -9,12 +10,13 @@ const Header = () => {
         </h1>
         <nav>
           <div className="flex space-x-4 items-center">
-            <Link href="#" className="text-gray-500 hover:text-gray-900">
+            {/* <Link href="#" className="text-gray-500 hover:text-gray-900">
               Home
             </Link>
             <Link href="#" className="text-gray-500 hover:text-gray-900">
               About
-            </Link>
+            </Link> */}
+            <SignOutBtn/>
             <Link href="#" >
               <img src="/userIcon.png" alt="Logo" className="h-12 w-12 mr-1" />
             </Link>
