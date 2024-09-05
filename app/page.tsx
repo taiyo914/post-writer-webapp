@@ -7,9 +7,7 @@ import Settings from "./components/SettingsModal";
 
 export default function Home() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const toggleModal = () => {
-    setModalOpen(!isModalOpen);
-  };
+  const toggleModal = () => setModalOpen(!isModalOpen);
 
   const [loading, setLoading] = useState(true);
 

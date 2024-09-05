@@ -1,14 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { wordsData } from "@/data/wordsData";
-import { Settings } from "@/types/settings";
+import { SettingsProps } from "@/types/settings";
 import { filterAndSortWords } from "@/utils/filterAndSortWords";
 import VocabListHeader from "./VocabListHeader";
 import VocabListItem from "./VocabListItem";
 import PaginationControls from "./PaginationControls";
 
 interface VocabListProps {
-  settings: Settings;
+  settings: SettingsProps;
 }
 
 const VocabList: React.FC<VocabListProps> = ({ settings }) => {

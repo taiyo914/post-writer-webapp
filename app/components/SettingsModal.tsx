@@ -7,7 +7,7 @@ interface SettingsProps {
   onClose: () => void;
 }
 
-export default function Settings({isOpen, onClose}: SettingsProps) {
+export default function SettingsModal({isOpen, onClose}: SettingsProps) {
   const supabase = createClient()
   const [settings, setSettings] = useState({
     sort_field: "created_at",
@@ -34,11 +34,12 @@ export default function Settings({isOpen, onClose}: SettingsProps) {
         const { data, error } = await supabase
           .from("user_words_settings")
           .select('sort_field, sort_order, start_index, end_index, start_review_count, end_review_count, date_field, start_date, end_date, display_count')
-          .eq("user_id", user.id); 
+          .eq("user_id", user.id)
+          .single(); 
         if(error){
           alert(`設定情報の取得に失敗しました: ${error.message}`)
         } else{
-          setSettings(data[0])
+          setSettings(data)
         }
       }
     }
