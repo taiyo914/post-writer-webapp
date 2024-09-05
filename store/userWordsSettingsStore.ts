@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { UserWordsSettings } from '@/types/UserWordsSettings';
+import { UserWordsSettingsType } from '@/types/UserWordsSettingsType';
 
 type UserWordsSettingsState = {
-  userWordsSettings: UserWordsSettings;
-  setUserWordsSettings: (settings: Partial<UserWordsSettings>) => void;
+  userWordsSettings: UserWordsSettingsType;
+  setUserWordsSettings: (settings: Partial<UserWordsSettingsType>) => void;
   incrementPageOffset: () => void;
   decrementPageOffset: () => void;
 };
@@ -24,7 +24,7 @@ const useUserWordsSettingsStore = create<UserWordsSettingsState>((set) => ({
   },
   
   // userWordsSettingsを更新するアクション 
-  setUserWordsSettings: (settings: Partial<UserWordsSettings>) =>
+  setUserWordsSettings: (settings: Partial<UserWordsSettingsType>) =>
     set((state) => ({
       userWordsSettings: { ...state.userWordsSettings, ...settings },
     })),

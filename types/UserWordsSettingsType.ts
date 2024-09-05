@@ -1,4 +1,4 @@
-export type UserWordsSettings = {
+export type UserWordsSettingsType = {
   sort_field: string;
   sort_order: string;
   start_index: number;
