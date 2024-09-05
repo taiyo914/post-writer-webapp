@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import VocabList from "./components/VocabList/VocabList";
-import SettingsModal from "./components/SettingModal";
-import { Settings } from "@/types/settings";
+import { SettingsProps } from "@/types/settings";
+import Settings from "./components/SettingsModal";
 
 export default function Home() {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
@@ -13,7 +13,7 @@ export default function Home() {
 
   const [loading, setLoading] = useState(true);
 
-  const [settings, setSettings] = useState<Settings>({
+  const [settings, setSettings] = useState<SettingsProps>({
     sortOrder: "日付順（新しい順）",
     displayCount: 10,
     priorityRange: [1, 10],
@@ -28,7 +28,7 @@ export default function Home() {
     setLoading(false);
   }, []);
 
-  const handleSaveSettings = (newSettings: Settings) => {
+  const handleSaveSettings = (newSettings: SettingsProps) => {
     setSettings(newSettings);
   };
 
@@ -66,12 +66,7 @@ export default function Home() {
         </button>
       </div>
       <VocabList settings={settings} />
-      <SettingsModal
-        isOpen={isModalOpen}
-        onClose={toggleModal}
-        settings={settings}
-        onSave={handleSaveSettings}
-      />
+      <Settings isOpen={isModalOpen} onClose={toggleModal}/>
       <div className="h-32"></div>
     </div>
   );
