@@ -1,7 +1,14 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
-import SignOutBtn from "./SignOutBtn";
+import MenuBar from "../experiment/Menubar";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <header className="bg-white shadow-md">
       <div className="max-w-[2000px] mx-auto px-5 py-3 flex justify-between items-center">
@@ -10,19 +17,14 @@ const Header = () => {
         </h1>
         <nav>
           <div className="flex space-x-4 items-center">
-            {/* <Link href="#" className="text-gray-500 hover:text-gray-900">
-              Home
-            </Link>
-            <Link href="#" className="text-gray-500 hover:text-gray-900">
-              About
-            </Link> */}
-            <SignOutBtn/>
-            <Link href="#" >
-              <img src="/userIcon.png" alt="Logo" className="h-12 w-12 mr-1" />
-            </Link>
+            {/* ハンバーガーメニューボタン */}
+            <button onClick={toggleMenu} className="">
+              <Bars3Icon className="cursor-pointer h-8 w-8 text-gray-600" />
+            </button>
           </div>
         </nav>
       </div>
+      <MenuBar isMenuOpen={isMenuOpen} onClose={toggleMenu} />
     </header>
   );
 };
