@@ -8,8 +8,11 @@ export default function SignOutBtn() {
   const singOut = async () =>{
     const  { error } = await supabase.auth.signOut()
     router.push("/signin")
+    if(error){
+      alert(`ログアウトできませんでした: ${error.message}`)
+    }
   }
   return (
-      <button onClick={singOut} className="py-1 px-2 bg-gray-300 rounded-lg"> Log out</button>
+    <button onClick={singOut}>Log out</button>
   );
 }
