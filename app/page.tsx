@@ -1,71 +1,51 @@
-"use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import VocabList from "./components/VocabList/VocabList";
-import { SettingsProps } from "@/types/settings";
-import Settings from "./components/SettingsModal";
+import Home from "./components/Home";
+import { createClient } from "@/utils/supabase/server";
+import { UserWordsSettingsType } from "@/types/Types";
 
-export default function Home() {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const toggleModal = () => setModalOpen(!isModalOpen);
-
-  const [loading, setLoading] = useState(true);
-
-  const [settings, setSettings] = useState<SettingsProps>({
-    sortOrder: "日付順（新しい順）",
-    displayCount: 10,
-    priorityRange: [1, 10],
-    dateRange: ["", ""],
-  }); 
-
-  useEffect(() => {
-    const savedSettings = localStorage.getItem("userSettings");
-    if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
+export default async function Server() {
+  const supabase = createClient();
+  //3つの関数を定義し、あとで順番に実行します
+  //1. userIDを取得します
+  const getUserId = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (error) {
+      console.error(error);
+      return "";
     }
-    setLoading(false);
-  }, []);
-
-  const handleSaveSettings = (newSettings: SettingsProps) => {
-    setSettings(newSettings);
+    return data.user.id;
   };
+  //2. userIDから単語の設定情報userWordsSettingsを取得します
+  const getUserWordsSettings = async (userId: string):Promise<UserWordsSettingsType> => {
+    const { data: userWordsSettings, error } = await supabase.from("user_words_settings").select("sort_field, sort_order, start_index, end_index, start_review_count, end_review_count, date_field, start_date, end_date, display_count, page_offset").eq("user_id", userId).single();
+    if (error) {
+      console.log(`Error fetching data: ${error.message}`);
+    }
+    return userWordsSettings as UserWordsSettingsType;
+  };
+  //3. userIDとuserWordsSettingsから初期表示の単語一覧initialWordsを取得します
+  const getInitialWords = async (userId: string, userWordsSettings: any) => {
+    const { data: initialWords, error } = await supabase
+      .from("words")
+      .select("id, word, meaning, example, example_translation, memo, index, favorite, review_count, reviewed_at, created_at, updated_at, deleted_at")
+      .eq("user_id", userId)
+      .gte("index", userWordsSettings.start_index || 0)
+      .lte("index", userWordsSettings.end_index || 10)
+      .gte("review_count", userWordsSettings.start_review_count || 0)
+      .lte("review_count", userWordsSettings.end_review_count || 100)
+      .gte(userWordsSettings.date_field, userWordsSettings.start_date || "1900-01-01")
+      .lte(userWordsSettings.date_field, userWordsSettings.end_date || "2100-12-31")
+      .order(userWordsSettings.sort_field || "created_at", { ascending: userWordsSettings.sort_order === "ASC" })
+      .range((userWordsSettings.page_offset - 1) * userWordsSettings.display_count, userWordsSettings.page_offset * userWordsSettings.display_count - 1);
+    if (error) {
+      throw new Error(`Error fetching data: ${error.message}`);
+    }
+    return initialWords;
+  };
+  //1,2,3を実行し、Propsで各コンポーネントに渡します
+  const userId = await getUserId();
+  const initialUserWordsSettings = await getUserWordsSettings(userId);
+  const initialWords = await getInitialWords(userId, initialUserWordsSettings);
+  console.log(userId, initialUserWordsSettings, initialWords)
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-4 mx-auto max-w-[2000px]">
-      <div className="flex justify-center space-x-2 mb-4 p-1">
-        <Link
-          href="new"
-          className="text-center w-1/2 py-2  font-semibold rounded-md shadow-md hover:bg-gray-200  transition-colors duration-300 border"
-        >
-          単語を追加する
-        </Link>
-        <Link
-          href="review"
-          className="text-center w-1/2 py-2 border font-semibold rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-700 transition-colors duration-300"
-        >
-          復 習
-        </Link>
-      </div>
-      <div className="flex items-center justify-between">
-        <h1 className="font-bold text-2xl px-3 w-fit">Vocab</h1>
-        <button
-          className="text-sm font-semibold mb-1 mr-1 px-5 py-2 rounded-md bg-gray-300 hover:opacity-75 shadow w-1/6"
-          onClick={toggleModal}
-        >
-          設 定
-        </button>
-      </div>
-      <VocabList settings={settings} />
-      <Settings isOpen={isModalOpen} onClose={toggleModal}/>
-      <div className="h-32"></div>
-    </div>
-  );
+  return <Home userId={userId} initialUserWordsSettings={initialUserWordsSettings} initialWords={initialWords}/>
 }
