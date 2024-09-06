@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import MenuBar from "./Menubar";
+import Menubar from "./Menubar";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
           </div>
         </nav>
       </div>
-      <MenuBar isMenuOpen={isMenuOpen} onClose={toggleMenu} />
+      <Menubar isMenuOpen={isMenuOpen} onClose={toggleMenu} />
     </header>
   );
 };
