@@ -1,9 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import SettingsModal from "../components/SettingsModal";
+import SettingsModal from "../components/Display/components/SettingsModal";
 import VocabDisplayHeader from "./VocabDisplayHeader";
 import TableDisplay from "./TableDisplay";
-import Menubar from "./Menubar";
+import Menubar from "../components/Header/Menubar";
 import FramerMotion from "./FramerMotion";
 import { motion } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -21,7 +21,6 @@ export default function VocabDisplay() {
 
   return (
     <div className="p-4">
-
       <SettingsModal isOpen={isModalOpen} onClose={toggleModal} />
       <VocabDisplayHeader
         currentTab={currentTab}
