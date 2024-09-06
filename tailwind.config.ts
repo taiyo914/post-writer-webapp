@@ -16,6 +16,9 @@ const config: Config = {
       screens: {
         'xs': '480px', 
       },
+      colors: {
+        'custom': '#0148fcdb',
+      },
     },
   },
   plugins: [],
