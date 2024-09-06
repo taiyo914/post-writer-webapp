@@ -3,7 +3,7 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { XCircleIcon } from "@heroicons/react/24/outline";
-import SettingsModal from "../components/SettingsModal";
+import { motion } from "framer-motion";
 
 interface SettingsProps {
   currentTab:string;
@@ -93,7 +93,7 @@ const VocalDisplayHeader = ({currentTab, setCurrentTab, toggleModal}: SettingsPr
             )}
           </div>
         )}
-
+        
         {/* タブレット&デスクトップ用の検索とフィルター */}
         {screenSize === "tablet" && (
           <div className="flex items-center justify-between">
