@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import SettingsModal from "../components/Display/components/SettingsModal";
+import SettingsModal from "../components/display/components/SettingsModal";
 import VocabDisplayHeader from "./VocabDisplayHeader";
 import TableDisplay from "./TableDisplay";
 import Menubar from "../components/Header/Menubar";

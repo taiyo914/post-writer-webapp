@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import VocabList from "@/app/components/VocabList/VocabList";
 import { SettingsProps } from "@/types/settings";
-import Settings from "./Display/components/SettingsModal";
-import { WordType } from "@/types/WordType"
+import Settings from "./display/components/SettingsModal";
+import { WordType } from "@/types/WordType";
 import { UserWordsSettingsType } from "@/types/UserWordsSettingsType";
 
 type Props = {
@@ -24,7 +24,7 @@ export default function Home({ initialWords, userId, initialUserWordsSettings }:
     displayCount: 10,
     priorityRange: [1, 10],
     dateRange: ["", ""],
-  }); 
+  });
 
   useEffect(() => {
     const savedSettings = localStorage.getItem("userSettings");
@@ -72,7 +72,7 @@ export default function Home({ initialWords, userId, initialUserWordsSettings }:
         </button>
       </div>
       <VocabList settings={settings} />
-      <Settings isOpen={isModalOpen} onClose={toggleModal}/>
+      <Settings isOpen={isModalOpen} onClose={toggleModal} />
       <div className="h-32"></div>
     </div>
   );
