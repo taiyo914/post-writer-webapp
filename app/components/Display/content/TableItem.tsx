@@ -5,7 +5,7 @@ import { WordType } from "@/types/Types";
 const VocabListItem = ({ word } : {word : WordType}) => {
   return (
     <div className="flex items-center ">
-      <div className="flex-1 grid grid-cols-5 border-gray-200 bg-white border shadow-sm rounded-lg py-2">
+      <div className="flex-1 grid grid-cols-5 border-gray-200 bg-white border  shadow-sm rounded-lg py-2">
         <div className="col-span-1 flex items-center  border-r border-gray-200 px-2 font-bold text-lg">
           <div className="flex justify-center items-center min-h-10 min-w-10 bg-gray-300 rounded-full text-lg font-bold mr-3">
             {word.index}
