@@ -1,12 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import SettingsModal from "./components/SettingsModal";
+import SettingsModal from "./SettingsModal";
 import DisplayHeader from "./components/DisplayHeader";
 import CardsDisplay from "./components/CardsDisplay";
 import TableDisplay from "./components/TableDisplay";
 import { InitialInfoProps } from "@/types/Types";
 
-export default function Display({ initialWords, userId, initialUserWordsSettings }: InitialInfoProps) {
+export default function Display({
+  initialWords,
+  userId,
+  initialUserWordsSettings,
+}: InitialInfoProps) {
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const toggleModal = () => setModalOpen(!isModalOpen);
   const [currentTab, setCurrentTab] = useState("cards");
@@ -21,11 +25,15 @@ export default function Display({ initialWords, userId, initialUserWordsSettings
       />
       {currentTab === "cards" ? (
         <div className=" rounded rounded-tl-none border">
-          <CardsDisplay/>
+          <CardsDisplay />
         </div>
       ) : (
         <div className=" rounded rounded-tl-none border">
-          <TableDisplay userId={userId} initialUserWordsSettings={initialUserWordsSettings} initialWords={initialWords}/>
+          <TableDisplay
+            userId={userId}
+            initialUserWordsSettings={initialUserWordsSettings}
+            initialWords={initialWords}
+          />
         </div>
       )}
     </div>

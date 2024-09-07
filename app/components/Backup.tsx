@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import VocabList from "@/app/components/VocabList/VocabList";
 import { SettingsProps } from "@/types/settings";
-import Settings from "./display/components/SettingsModal";
+import Settings from "./display/SettingsModal";
 import { WordType } from "@/types/WordType";
 import { UserWordsSettingsType } from "@/types/UserWordsSettingsType";
 
