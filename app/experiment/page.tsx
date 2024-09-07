@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import SettingsModal from "../components/display/components/SettingsModal";
 import VocabDisplayHeader from "./VocabDisplayHeader";
 import TableDisplay from "./TableDisplay";
-import Menubar from "../components/Header/Menubar";
+import Menubar from "../components/header/Menubar";
 import FramerMotion from "./FramerMotion";
 import { motion } from "framer-motion";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
