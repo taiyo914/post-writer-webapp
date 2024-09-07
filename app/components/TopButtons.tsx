@@ -1,3 +1,4 @@
+"use client"
 import { color } from "framer-motion";
 import Link from "next/link";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
