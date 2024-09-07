@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { UserWordsSettingsType } from '@/types/UserWordsSettingsType';
+import { UserWordsSettingsType } from '@/types/Types';
 
 type UserWordsSettingsState = {
   userWordsSettings: UserWordsSettingsType;

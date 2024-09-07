@@ -45,7 +45,6 @@ export default async function Server() {
   const userId = await getUserId();
   const initialUserWordsSettings = await getUserWordsSettings(userId);
   const initialWords = await getInitialWords(userId, initialUserWordsSettings);
-  console.log(userId, initialUserWordsSettings, initialWords)
 
   return <Home userId={userId} initialUserWordsSettings={initialUserWordsSettings} initialWords={initialWords}/>
 }

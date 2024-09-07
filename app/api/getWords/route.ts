@@ -8,7 +8,10 @@ export async function POST(request: Request) {
     const { userId, userWordsSettings } = await request.json();
 
     if (!userId || !userWordsSettings) {
-      return NextResponse.json({ error: "userId または userWordsSettings がありません" }, { status: 400 });
+      return NextResponse.json(
+        { error: "userId または userWordsSettings がありません" },
+        { status: 400 }
+      );
     }
 
     // 1. 単語の総数を取得
@@ -24,13 +27,18 @@ export async function POST(request: Request) {
       .lte(userWordsSettings.date_field, userWordsSettings.end_date || "2100-12-31");
 
     if (countError) {
-      return NextResponse.json({ error: `Error fetching total words count: ${countError.message}` }, { status: 500 });
+      return NextResponse.json(
+        { error: `Error fetching total words count: ${countError.message}` },
+        { status: 500 }
+      );
     }
 
-     // 2. ページネーション用のデータを取得
+    // 2. ページネーション用のデータを取得
     const { data: words, error } = await supabase
       .from("words")
-      .select("id, word, meaning, example, example_translation, memo, index, favorite, review_count, reviewed_at, created_at, updated_at, deleted_at")
+      .select(
+        "id, word, meaning, example, example_translation, memo, index, favorite, review_count, reviewed_at, created_at, updated_at, deleted_at"
+      )
       .eq("user_id", userId)
       .gte("index", userWordsSettings.start_index || 0)
       .lte("index", userWordsSettings.end_index || 10)
@@ -41,7 +49,10 @@ export async function POST(request: Request) {
       .order(userWordsSettings.sort_field || "created_at", {
         ascending: userWordsSettings.sort_order === "ASC",
       })
-      .range((userWordsSettings.page_offset - 1) * userWordsSettings.display_count, userWordsSettings.page_offset * userWordsSettings.display_count - 1);
+      .range(
+        (userWordsSettings.page_offset - 1) * userWordsSettings.display_count,
+        userWordsSettings.page_offset * userWordsSettings.display_count - 1
+      );
 
     if (error) {
       throw new Error(`Error fetching words: ${error.message}`);
