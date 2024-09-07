@@ -9,7 +9,7 @@ const DisplayHeader = () => {
   return (
     <div className="flex items-center justify-between">
       <Tabs/>
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 mr-1">
         <SearchInput/>
         <SettingsButton/>
       </div>
