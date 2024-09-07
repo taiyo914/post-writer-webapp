@@ -18,7 +18,7 @@ const TopButtons = () => {
         >
           <PlusCircleIcon className="h-7"/>
           <div>単語を追加する</div>
-          <div className="invisible w-7"></div>
+          <div className="invisible "></div>
         </Link>
         <Link
           href="review"
@@ -33,7 +33,7 @@ const TopButtons = () => {
         > 
           <PlayCircleIcon className="h-7"/>
           <div>ページを復習</div>
-          <div className="invisible w-7"></div>
+          <div className="invisible w-2"></div>
         </Link>
       </div>
     </div>
