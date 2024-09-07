@@ -15,9 +15,9 @@ const TopButtons = () => {
         </Link>
         <Link
           href="review"
-          className="text-center w-1/2 py-2 border font-semibold bg-blue-600 rounded-md shadow-md  text-white hover:bg-blue-500 transition-all duration-300"
+          className="text-center w-1/2 py-2 border font-semibold bg-gray-300 rounded-md shadow-md hover:bg-gray-400 transition-all duration-300"
         >
-          復 習
+          TSV / CSV からインポート
         </Link>
       </div>
     </div>

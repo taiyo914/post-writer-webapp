@@ -20,10 +20,10 @@ const Pagination = ({
 }: PaginationProps) => {
   return (
     <div>
-      <div className="flex justify-end items-center my-3 mx-2 ">
-        {/* <div className="ml-4">
-          <span className="text-gray-500 text-lg">Something</span>
-        </div> */}
+      <div className="flex justify-between items-start pl-5 pt-4 pr-2 pb-3">
+        <div className="text-center w-1/3 py-2 border font-semibold bg-blue-300 rounded-md shadow-sm hover:bg-blue-500 hover:text-white transition-all duration-300">
+          ページレビュー
+        </div>
         <div className="flex items-center">
           <button
             onClick={decrementPageOffset}
@@ -32,9 +32,9 @@ const Pagination = ({
               pageOffset === 1 ? "opacity-30" : "hover:bg-gray-100"
             }`}
           >
-            <ChevronLeftIcon className="h-6 text-gray-600" />
+            <ChevronLeftIcon className="h-5 text-gray-600" />
           </button>
-          <span className="bg-gray-100 py-1 px-3 mx-1 rounded-md text-lg font-medium text-gray-700">
+          <span className="bg-gray-100 py- px-3 mx-1 rounded-md text-lg font-medium text-gray-700">
             {pageOffset}
           </span>
           <span className="text-sm text-gray-500 mr-1">
@@ -51,7 +51,7 @@ const Pagination = ({
               // "totalWords !== 0 &&"は初回レンダリングで2つ目の四季が計算できないときにfalseを返し、ボタンが一瞬透明になるのを防ぐため
             }`}
           >
-            <ChevronRightIcon className="h-6 text-gray-600" />
+            <ChevronRightIcon className="h-5 text-gray-600" />
           </button>
         </div>
       </div>
