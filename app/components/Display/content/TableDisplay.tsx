@@ -74,7 +74,7 @@ const TableDisplay = ({ initialWords, userId, initialUserWordsSettings }: Initia
       } catch (error) {
         console.error("Error:", error);
       }
-    }, 5000), //5秒後にデバウンズ
+    }, 3000), //3秒後にデバウンズ
     [userId]
   );
 
@@ -82,9 +82,10 @@ const TableDisplay = ({ initialWords, userId, initialUserWordsSettings }: Initia
     if (isSettingsInitialized) {
       fetchWords();
       updatePageOffsetInSupabase(userWordsSettings.page_offset);
-      // デバウンズすることで5秒以内なら何回page_offsetが更新されても5秒後の最新の状態で1回だけ更新される
+      // 3秒デバウンズすることで3秒以内なら何回page_offsetが更新されてもfetchせず、最後の更新から3秒間経ってからfetchする
+      // これにより連続したデータの送信を防ぐことができる
     }
-  }, [userWordsSettings.page_offset, isSettingsInitialized]);
+  }, [userWordsSettings, isSettingsInitialized]);
 
   return (
     <div className="">
