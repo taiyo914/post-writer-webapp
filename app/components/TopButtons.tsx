@@ -5,8 +5,8 @@ import { PlayCircleIcon } from "@heroicons/react/16/solid";
 
 const TopButtons = () => {
   return (
-    <div className="p-3 xs:p-5 mx-auto max-w-[1200px]">
-      <div className="flex jusity-center flex-col xs:flex-row xs:space-x-4 xl:space-x-10">
+    <div className="p-3 xs:p-5 mx-auto max-w-[2000px]">
+      <div className="flex jusity-center flex-col xs:flex-row xs:space-x-4">
         <Link
           href="new"
           className="
