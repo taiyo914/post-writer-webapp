@@ -9,8 +9,8 @@ const SettingsButton = () => {
       onClick={toggleModal}
       className="cursor-pointer flex items-center text-gray-500"
     >
-      <AdjustmentsHorizontalIcon className="h-6 w-6 text-gray-400" />
-      フィルター
+      <AdjustmentsHorizontalIcon className="h-6 text-gray-400 " />
+      設定
     </button>
   );
 };
