@@ -8,11 +8,11 @@ const BottomButton = () => {
   };
 
   return (
-    <div className="flex justify-center mt-5 mb-20">
+    <div className="flex justify-center mt-5 mb-20 ">
       <button 
         onClick={handleScrollTop} 
         className="
-          bg-gray-500 text-white rounded-full 
+          bg-gray-500 text-white rounded-full shadow-md
           py-2 px-5 
           hover:bg-gray-400 transition-all
           flex space-x-1"
