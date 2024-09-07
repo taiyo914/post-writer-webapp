@@ -7,7 +7,7 @@ import useUserIdStore from "@/store/userIdStore";
 import useUserWordsSettingsStore from "@/store/userWordsSettingsStore";
 //offsetの更新を遅らせるためのデバウンズライブラリ
 import { debounce } from "lodash";
-import TableDisplayItem from "./TableDisplayItem";
+import TableItem from "./TableItem";
 import Pagination from "./Pagination";
 
 const TableDisplay = ({ initialWords, userId, initialUserWordsSettings }: InitialInfoProps) => {
@@ -108,7 +108,7 @@ const TableDisplay = ({ initialWords, userId, initialUserWordsSettings }: Initia
           </div>
           <div className="space-y-1">
             {words.map((word) => (
-              <TableDisplayItem key={word.id} word={word} />
+              <TableItem key={word.id} word={word} />
             ))}
           </div>
         </div>
