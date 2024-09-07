@@ -1,10 +1,11 @@
 "use client";
-import {  WordType } from "@/types/Types";
+import { WordType } from "@/types/Types";
 import TableItem from "./TableItem";
+import { motion } from "framer-motion";
 
-const TableDisplay = ({ words }:{ words: WordType[]}) => {
+const TableDisplay = ({ words }: { words: WordType[] }) => {
   return (
-    <div className="">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
       <div className="px-1 xs:px-4 pb-4 bg-white overflow-x-auto">
         <div className="xs:min-w-[1100px] min-w-[1750px]">
           <div className="flex items-center mb-1 ">
@@ -23,7 +24,7 @@ const TableDisplay = ({ words }:{ words: WordType[]}) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

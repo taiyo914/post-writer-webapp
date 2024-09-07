@@ -45,17 +45,30 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
     }
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";  // モーダルが開いたとき、スクロールを無効にする
+    } else {
+      document.body.style.overflow = "";  // モーダルが閉じたら元に戻す
+    }
+    return () => {
+      document.body.style.overflow = "";  // クリーンアップ
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center">
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+    <div className="fixed inset-0 flex justify-center items-center z-50">
+      <div className="absolute inset-0 bg-black opacity-50 z-40"></div>
       <div
         className="
         bg-white rounded-xl shadow-lg 
         p-5 m-5 xs:p-7 xs:m-7
         min-w-fit w-1/2 max-w-lg 
-        z-10 relative"
+        z-50 relative"
       >
         <h1 className="text-2xl font-bold mb-3 text-center">設定</h1>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 ml-1">

@@ -2,20 +2,24 @@
 import { useEffect, useState, useCallback } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { InitialInfoProps, WordType } from "@/types/Types";
-import useUserIdStore from "@/store/userIdStore";
-import useUserWordsSettingsStore from "@/store/userWordsSettingsStore";
-import { debounce } from "lodash"; //offsetの更新を遅らせるためのデバウンズライブラリ
-
 import Pagination from "./Pagination";
 import TableDisplay from "./TableDisplay";
-import ReviewButton from "./ReviewButton";
+//ZustandからStoreを取得
+import useUserIdStore from "@/store/userIdStore";
+import useUserWordsSettingsStore from "@/store/userWordsSettingsStore";
+import useTabStore from "../store/curretTabStore";
+//offsetの更新を遅らせるためのデバウンズライブラリ
+import { debounce } from "lodash"; 
+import CardsDisplay from "./CardsDisplay";
+
 
 const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: InitialInfoProps) => {
-  const setUserId = useUserIdStore((state) => state.setUserId);
+  const { setUserId }= useUserIdStore();
   const { userWordsSettings, setUserWordsSettings, incrementPageOffset, decrementPageOffset } = useUserWordsSettingsStore();
+  const { currentTab } = useTabStore();
+
   const [words, setWords] = useState<WordType[]>(initialWords);
   const [totalWords, setTotalWords] = useState<number>(0);
-  console.log(initialWords, initialWords.length);
   const [isSettingsInitialized, setIsSettingsInitialized] = useState(false); // 初期設定が完了したか確認するためのフラグ
 
   useEffect(() => {
@@ -40,9 +44,7 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
       const data = await response.json();
       if (response.ok) {
         setWords(data.words);
-        console.log("fetchData", data.words);
         setTotalWords(data.totalWords);
-        console.log("データの取得に成功しました:", data.words);
       } else {
         console.error("Error fetching words:", data.error);
       }
@@ -59,12 +61,9 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
           .from("user_words_settings")
           .update({ page_offset: newOffset })
           .eq("user_id", userId);
-        console.log("updateが実行されました", data);
         if (error) {
           console.error("Error updating page_offset in Supabase:", error.message);
-        } else {
-          console.log("updateが実行されました", data);
-        }
+        } 
       } catch (error) {
         console.error("Error:", error);
       }
@@ -82,7 +81,7 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
   }, [userWordsSettings, isSettingsInitialized]);
 
   return (
-    <div className="border rounded rounded-tl-none">
+    <div className="border rounded rounded-tl-none shadow">
       <div className="flex justify-end items-start xs:mt-3 xs:mr-2 mt-2 mr-1 mb-2">
         <Pagination
           pageOffset={userWordsSettings.page_offset}
@@ -92,7 +91,11 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
           decrementPageOffset={decrementPageOffset}
         />
       </div>
-      <TableDisplay words = {words}/>
+      {currentTab === 'cards' ? (
+        <CardsDisplay words = {words}/>
+      ) : (
+        <TableDisplay words = {words}/>
+      )}
       <div className="flex justify-end items-start xs:mb-3 xs:mr-2 mb-2 mr-1 mt-3">
         <Pagination
           pageOffset={userWordsSettings.page_offset}
