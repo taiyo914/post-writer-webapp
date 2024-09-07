@@ -2,11 +2,7 @@
 import React from "react";
 import { WordType } from "@/types/Types";
 
-interface Props {
-  word: WordType;
-}
-
-const VocabListItem : React.FC<Props> = ({ word }) => {
+const VocabListItem = ({ word } : {word : WordType}) => {
   return (
     <div className="flex items-center ">
       <div className="flex-1 grid grid-cols-5 border-gray-200 bg-white border shadow-sm rounded-lg py-2">
