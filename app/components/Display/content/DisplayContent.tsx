@@ -22,6 +22,9 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
   const [totalWords, setTotalWords] = useState<number>(0);
   const [isSettingsInitialized, setIsSettingsInitialized] = useState(false); // 初期設定が完了したか確認するためのフラグ
 
+//追加
+  const [fetchingKey, setFetchingKey] = useState(0); // アニメーションを再発動させるためのキー
+
   useEffect(() => {
     // ZustandにuserIdとuserWordsSettingsをセット
     setUserId(userId);
@@ -45,6 +48,9 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
       if (response.ok) {
         setWords(data.words);
         setTotalWords(data.totalWords);
+//追加
+        setFetchingKey(prevKey => prevKey + 1); // フェッチ後にキーを更新してアニメーションをトリガー
+      
       } else {
         console.error("Error fetching words:", data.error);
       }
@@ -92,9 +98,9 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
         />
       </div>
       {currentTab === 'cards' ? (
-        <CardsDisplay words = {words}/>
+        <CardsDisplay key={fetchingKey} words = {words}/>
       ) : (
-        <TableDisplay words = {words}/>
+        <TableDisplay key={fetchingKey} words = {words}/>
       )}
       <div className="flex justify-end items-start xs:mb-3 xs:mr-2 mb-2 mr-1 mt-3">
         <Pagination

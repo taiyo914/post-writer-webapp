@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 
 const TableDisplay = ({ words }: { words: WordType[] }) => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.5 }}
+    >
       <div className="px-1 xs:px-4 pb-4 bg-white overflow-x-auto">
         <div className="xs:min-w-[1080px] min-w-[1750px]">
           <div className="flex items-center mb-1 ">
@@ -17,7 +21,8 @@ const TableDisplay = ({ words }: { words: WordType[] }) => {
               <div className="col-span-1 font-bold text-gray-400 text-sm text-center">メモ</div>
             </div>
           </div>
-          <div className="space-y-1">
+          <div className="xs:pace-y-2 space-y-1">
+          
             {words.map((word) => (
               <TableItem key={word.id} word={word} />
             ))}
