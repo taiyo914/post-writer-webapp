@@ -23,7 +23,8 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
   const [isSettingsInitialized, setIsSettingsInitialized] = useState(false); // 初期設定が完了したか確認するためのフラグ
 
 //追加
-  const [fetchingKey, setFetchingKey] = useState(0); // アニメーションを再発動させるためのキー
+  const [fetchingKey, setFetchingKey] = useState<number>(0); // アニメーションを再発動させるためのキー
+  console.log("フェッチングキー", fetchingKey)
 
   useEffect(() => {
     // ZustandにuserIdとuserWordsSettingsをセット
@@ -98,9 +99,9 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
         />
       </div>
       {currentTab === 'cards' ? (
-        <CardsDisplay key={fetchingKey} words = {words}/>
+        <CardsDisplay key={fetchingKey} fetchingKey={fetchingKey} words = {words}/>
       ) : (
-        <TableDisplay key={fetchingKey} words = {words}/>
+        <TableDisplay key={fetchingKey} fetchingKey={fetchingKey} words = {words}/>
       )}
       <div className="flex justify-end items-start xs:mb-3 xs:mr-2 mb-2 mr-1 mt-3">
         <Pagination
