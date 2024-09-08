@@ -1,34 +1,39 @@
+// "use client"
+import { motion } from "framer-motion";
 import useTabStore from "../store/curretTabStore";
-
 
 const Tabs = () => {
   const { currentTab, setTab } = useTabStore();
 
   return (
     <div className="flex">
-      <div
+      <motion.div
         onClick={() => setTab('cards')}
         className={`
           cursor-pointer 
-          py-1 px-5
+          py-2 px-5
           border-t border-l 
-          rounded-tl-md rounded-tr-md 
+          rounded-tl-lg rounded-tr-lg
+          duration-200
+          transition-all
           ${currentTab === 'cards' 
-            ? 'bg-gray-200 font-semibold' 
-            : 'hover:bg-gray-100 transition-all'}`}
+            ? 'border-r font-bold bg-gray-100' 
+            : 'hover:bg-gray-50 text-gray-400 font-semibold '}`}
       >
         カード
-      </div>
+      </motion.div>
       <div
         onClick={() => setTab('table')}
         className={`
           cursor-pointer 
-          py-1 px-3 
+          py-2 px-3 
           border-t border-r 
-          rounded-tl-md rounded-tr-md 
+          rounded-tl-lg rounded-tr-lg
+          transition-all
+          duration-200
           ${currentTab === 'table' 
-            ? 'bg-gray-200 font-semibold' 
-            : 'hover:bg-gray-100  transition-all'}`}
+            ? 'bg-gray-100 font-bold border-l' 
+            : 'hover:bg-gray-50 text-gray-400 font-semibold '}`}
       >
         テーブル
       </div>
