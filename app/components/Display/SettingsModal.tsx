@@ -41,29 +41,8 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
       alert(`設定の更新に失敗しました...: ${error.message}`);
     } else {
       setUserWordsSettings({ ...temporarySettings, page_offset: 1 });
+      console.log("submitが実行されました")
       toggleModal()
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";  // モーダルが開いたとき、スクロールを無効にする
-    } else {
-      document.body.style.overflow = "";  // モーダルが閉じたら元に戻す
-    }
-    return () => {
-      document.body.style.overflow = "";  // クリーンアップ
-    };
-  }, [isOpen]);
-
-  const [isExiting, setIsExiting] = useState(false);  // 追加: アニメーション中かどうかのフラグ
-  const handleClose = () => {
-    setIsExiting(true);  // アニメーションの終了を待つためにフラグを立てる
-  };
-  const handleAnimationComplete = () => {
-    if (isExiting) {
-      toggleModal();  // アニメーション終了後にモーダルを閉じる
-      setIsExiting(false);  // フラグをリセット
     }
   };
 
@@ -236,12 +215,12 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
                 >
                   設定を保存
                 </button>
-                <button
-                  className="bg-gray-500 text-lg text-white px-3 xs:py-3 py-2 rounded-lg hover:bg-gray-600 transition-all mr-1 w-full"
-                  onClick={handleClose}
+                <div
+                  className="bg-gray-500 text-lg text-white px-3 xs:py-3 py-2 rounded-lg hover:bg-gray-600 transition-all mr-1 w-full text-center"
+                  onClick={toggleModal}
                 >
                   閉じる
-                </button>
+                </div>
               </div>
             </form>
           </div>
