@@ -7,7 +7,7 @@ import BottomButton from "./BottomBottun";
 
 export default function Home({ initialWords, userId, initialUserWordsSettings }: InitialInfoProps) {
   return (
-    <>
+    <div className="flex flex-col min-h-screen ">
       <Header />
       <TopButtons />
       <Display
@@ -15,8 +15,8 @@ export default function Home({ initialWords, userId, initialUserWordsSettings }:
         initialUserWordsSettings={initialUserWordsSettings}
         initialWords={initialWords}
       />
-      <BottomButton/>
+      <BottomButton/> {/* 一番最初のdivタグにflex-growがついているので、コンテンツよりスクリーンが長いときはここが伸びます */}
       <Footer/>
-    </>
+    </div>
   );
 }

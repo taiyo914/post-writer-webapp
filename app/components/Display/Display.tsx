@@ -10,10 +10,12 @@ import DisplayContent from "./content/DisplayContent";
 export default function Display({initialWords, userId, initialUserWordsSettings,}: InitialInfoProps) {
 
   return (
-    <div className="px-3 xs:px-5 mx-auto max-w-[2000px]">
-      <SettingsModal userId = {userId} initialUserWordsSettings={initialUserWordsSettings} />
-      <DisplayHeader/>
-      <DisplayContent userId={userId} initialUserWordsSettings={initialUserWordsSettings} initialWords={initialWords}/>
+    <div> {/* Homeコンポーネントのflex-colの影響で、 これがないと画面幅に広がらないので消さないでください*/}
+      <div className="px-3 xs:px-5 max-w-[2000px] mx-auto">
+        <SettingsModal userId = {userId} initialUserWordsSettings={initialUserWordsSettings} />
+        <DisplayHeader/>
+        <DisplayContent userId={userId} initialUserWordsSettings={initialUserWordsSettings} initialWords={initialWords}/>
+      </div>
     </div>
   );
 }
