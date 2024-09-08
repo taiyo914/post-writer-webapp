@@ -10,7 +10,7 @@ const TableDisplay = ({ words }: { words: WordType[] }) => {
       animate={{ opacity: 1 }} 
       transition={{ duration: 0.5 }}
     >
-      <div className="px-1 xs:px-4 pb-4 bg-white overflow-x-auto">
+      <div className="px-2 xs:px-4 pb-4 bg-white overflow-x-auto">
         <div className="xs:min-w-[1080px] min-w-[1750px]">
           <div className="flex items-center mb-1 ">
             <div className="flex-1 grid grid-cols-5">
