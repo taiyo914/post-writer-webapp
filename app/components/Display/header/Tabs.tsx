@@ -1,5 +1,6 @@
 import useTabStore from "../store/curretTabStore";
 
+
 const Tabs = () => {
   const { currentTab, setTab } = useTabStore();
 
