@@ -1,4 +1,3 @@
-// components/VocabularyList.tsx
 import { WordType } from "@/types/Types";
 import CardsItem from "./CardsItem";
 import { motion } from "framer-motion";
