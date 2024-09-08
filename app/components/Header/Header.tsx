@@ -19,7 +19,7 @@ const Header = () => {
           <div className="flex space-x-4 items-center">
             {/* ハンバーガーメニューボタン */}
             <button onClick={toggleMenu} className="">
-              <Bars3Icon className="cursor-pointer h-8 w-8 text-gray-600" />
+              <Bars3Icon className="cursor-pointer h-8 text-gray-600 hover:text-gray-400 transition-all duration-200" />
             </button>
           </div>
         </nav>

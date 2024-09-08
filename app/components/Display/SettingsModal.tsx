@@ -71,12 +71,14 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 flex justify-center items-center z-50">
+          {/* オーバーレイ */}
           <motion.div
             className="absolute inset-0 bg-black z-40"
             initial={{ opacity: 0 }}    
             animate={{ opacity: 0.5 }}   
             exit={{ opacity: 0 }}        
-            transition={{ duration: 0.3 }}  
+            transition={{ duration: 0.3 }}
+            onClick={toggleModal}
           ></motion.div>
         <motion.div 
            initial={{ opacity: 0, y: -50 }}  

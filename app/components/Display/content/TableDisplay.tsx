@@ -21,7 +21,7 @@ const TableDisplay = ({ words }: { words: WordType[] }) => {
               <div className="col-span-1 font-bold text-gray-400 text-sm text-center">メモ</div>
             </div>
           </div>
-          <div className="xs:pace-y-2 space-y-1">
+          <div className="space-y-2">
           
             {words.map((word) => (
               <TableItem key={word.id} word={word} />

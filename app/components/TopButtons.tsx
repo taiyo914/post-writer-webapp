@@ -8,12 +8,13 @@ const TopButtons = () => {
   return (
     <div> {/* Homeコンポーネントのflex-colの影響で、 これがないと画面幅に広がらないので消さないでください*/}
       <div className="p-3 xs:p-5 mx-auto max-w-[2000px]">
-        <div className="flex jusity-center flex-col xs:flex-row xs:space-x-4">
+        <div className="flex jusity-center flex-col xs:flex-row xs:space-x-4 xs:my-0 my-2">
           <Link
             href="new"
             className="
               text-center font-semibold
               w-full xs:w-1/2 py-2   
+              xs:mb-0 mb-1
               border rounded-md shadow-md 
               hover:bg-gray-200  transition-all duration-300 
               flex items-center justify-center space-x-1"
