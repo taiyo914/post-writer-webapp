@@ -78,10 +78,9 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
             exit={{ opacity: 0 }}        
             transition={{ duration: 0.3 }}  
           ></motion.div>
-          
 
           <motion.div
-            className="bg-white rounded-xl shadow-lg p-5 xs:px-10 m-5 xs:py-7 xs:m-7 w-1/2 xs:min-w-[400px] min-w-[300px] max-w-lg z-50 relative max-h-screen"
+            className="bg-white rounded-xl shadow-lg p-5 xs:px-10 m-5 xs:py-7 xs:m-7 w-1/2 xs:min-w-[400px] min-w-[300px] max-w-2xl z-50 relative max-h-screen"
             initial={{ opacity: 0, y: -50 }}  
             animate={{ opacity: 1, y: 0 }}    
             exit={{ opacity: 0, y: -50 }}      
