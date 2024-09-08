@@ -15,7 +15,7 @@ const BottomButton = () => {
           className="
             bg-gray-500 text-white rounded-full shadow-md
             py-2 px-5 
-            hover:bg-gray-400 transition-all
+            hover:bg-gray-600 transition-all duration-300
             flex space-x-1"
         >
           <FaArrowUp size={20} /> <div>トップに戻る</div>

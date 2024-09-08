@@ -48,8 +48,8 @@ const SearchInput = () => {
 
   return (
     <div ref={containerRef} className="flex items-center ">
-      <button onClick={toggleSearch} className="flex items-center">
-        <MagnifyingGlassIcon className="h-5 text-gray-400 cursor-pointer mr-1" />
+      <button onClick={toggleSearch} className="flex items-center hover:bg-gray-100 duration-300 rounded-lg p-1 px-2">
+        <MagnifyingGlassIcon className="h-5 text-gray-400 cursor-pointer " />
         {!isOpen && <span className="text-gray-500 transition-all">検索</span>}   {/* 開いたときは「検索」を非表示 */}
       </button>
       <motion.div

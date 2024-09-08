@@ -30,7 +30,7 @@ const TopButtons = () => {
               mt-2 xs:mt-0
               bg-blue-500 text-white
               rounded-md shadow-md 
-              hover:bg-blue-400 transition-all duration-300
+              hover:bg-blue-600 transition-all duration-300
               flex items-center justify-center space-x-1"
           > 
             <PlayCircleIcon className="h-7"/>
