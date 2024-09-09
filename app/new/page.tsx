@@ -2,31 +2,36 @@
 import Link from "next/link";
 import { useState, FormEvent, ChangeEvent, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
+import { createClient } from "../../utils/supabase/client";
+import useUserIdStore from "@/store/userIdStore";
+
 
 interface FormData {
   word: string;
   meaning: string;
-  exampleSentence: string;
-  exampleTranslation: string;
+  example: string;
+  example_translation: string;
   memo: string;
-  rating: number;
+  index: number;
+}
+
+const initialValue = {
+  word: "",
+  meaning: "",
+  example: "",
+  example_translation: "",
+  memo: "",
+  index: 0,
 }
 
 export default function Form() {
-  const [formData, setFormData] = useState<FormData>({
-    word: "",
-    meaning: "",
-    exampleSentence: "",
-    exampleTranslation: "",
-    memo: "",
-    rating: 0,
-  });
-
+  const  userId  = useUserIdStore(state => state.userId)
+  const [formData, setFormData] = useState<FormData>(initialValue);
+  const supabase = createClient()
   const router = useRouter();
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -37,8 +42,25 @@ export default function Form() {
   const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      rating: Number(e.target.value),
+      index: Number(e.target.value),
     }));
+  };
+
+  const saveDataToDatabase = async (data: FormData) => {
+    if (!userId){
+      alert("ユーザー情報がありません.一度ホームに戻ってください");
+      return
+    }
+
+    const { error: insertError } = await supabase.from("words").insert([
+      { ...data, user_id: userId },
+    ]);
+    if (insertError) {
+      alert("単語の追加に失敗しました...: " + insertError.message);
+    } else {
+      setFormData(initialValue);
+      alert("単語が登録されました！");
+    }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -50,19 +72,7 @@ export default function Form() {
   const handleSubmitAndContinue = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     await saveDataToDatabase(formData);
-    setFormData({
-      word: "",
-      meaning: "",
-      exampleSentence: "",
-      exampleTranslation: "",
-      memo: "",
-      rating: 0,
-    });
-  };
-
-  const saveDataToDatabase = async (data: FormData) => {
-    console.log(data);
-    // データベースにデータを保存する処理
+    setFormData(initialValue);
   };
 
   return (
@@ -115,14 +125,14 @@ export default function Form() {
             <div className="mb-4">
               <label
                 className="block text-gray-700 font-bold"
-                htmlFor="exampleSentence"
+                htmlFor="example"
               >
                 例文
               </label>
               <textarea
-                name="exampleSentence"
-                id="exampleSentence"
-                value={formData.exampleSentence}
+                name="example"
+                id="example"
+                value={formData.example}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md text-gray-700 bg-white h-24"
               ></textarea>
@@ -131,14 +141,14 @@ export default function Form() {
             <div className="mb-4">
               <label
                 className="block text-gray-700 font-bold"
-                htmlFor="exampleTranslation"
+                htmlFor="example_translation"
               >
                 例文訳
               </label>
               <textarea
-                name="exampleTranslation"
-                id="exampleTranslation"
-                value={formData.exampleTranslation}
+                name="example_translation"
+                id="example_translation"
+                value={formData.example_translation}
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md text-gray-700 bg-white h-24"
               ></textarea>
@@ -164,14 +174,14 @@ export default function Form() {
               <div className="flex">
                 <input
                   type="range"
-                  name="rating"
+                  name="index"
                   min="0"
                   max="10"
-                  value={formData.rating}
+                  value={formData.index}
                   onChange={handleSliderChange}
                   className="w-full"
                 />
-                <div className="text-gray-500  pl-2">{formData.rating}</div>
+                <div className="text-gray-500  pl-2">{formData.index}</div>
               </div>
             </div>
           </div>
