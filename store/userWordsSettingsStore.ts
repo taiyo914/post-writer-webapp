@@ -10,7 +10,7 @@ type UserWordsSettingsState = {
 
 const useUserWordsSettingsStore = create<UserWordsSettingsState>((set) => ({
   userWordsSettings: {
-    sort_field: "created_at",
+    sort_field: "increment",
     sort_order: "DESC",
     start_index: 0,
     end_index: 10,

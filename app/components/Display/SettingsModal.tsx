@@ -95,7 +95,7 @@ export default function SettingsModal({ userId, initialUserWordsSettings }: Sett
                     onChange={handleChange}
                     className="xs:pl-3 pl-1 xs:py-3 py-1 pr-0 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-black"
                   >
-                    <option value="created_at">作成日</option>
+                    <option value="increment">作成日</option>
                     <option value="index">優先度</option>
                     <option value="word">語句</option>
                     <option value="review_count">復習回数</option>

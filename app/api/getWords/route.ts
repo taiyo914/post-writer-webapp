@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       .lte("review_count", userWordsSettings.end_review_count || 100)
       .gte(userWordsSettings.date_field, userWordsSettings.start_date || "1900-01-01")
       .lte(userWordsSettings.date_field, userWordsSettings.end_date || "2100-12-31")
-      .order(userWordsSettings.sort_field || "created_at", {
+      .order(userWordsSettings.sort_field || "increment", {
         ascending: userWordsSettings.sort_order === "ASC",
       })
       .range(
