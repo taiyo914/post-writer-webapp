@@ -7,8 +7,9 @@ const CardsDisplay = ({ fetchingKey, words }: { fetchingKey: number, words: Word
   if(fetchingKey === 0){
     return (
       <div className="flex flex-col items-center justify-center"> 
-        <p>fetchingKeyが0の間この画面が表示されます </p>
-        <p>このあとデータをfetchしてfethingKeyが1になり、画面が表示されます</p>
+        {/* <p>fetchingKeyが0の間この画面が表示されます </p>
+        <p>このあとデータをfetchしてfethingKeyが1になり、画面が表示されます</p> */}
+          <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
       </div>
     )
   }else{

@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 
 const TableDisplay = ({ fetchingKey, words }: { fetchingKey: number; words: WordType[] }) => {
   if (fetchingKey === 0) {
-    return <div className="flex items-center justify-center"> ちょっと待ってて </div>;
+    return <div className="flex items-center justify-center">
+        <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+    </div>;
   } else {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
