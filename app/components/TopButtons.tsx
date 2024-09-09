@@ -40,6 +40,7 @@ const TopButtons = () => {
           </Link>
         </div>
       </div>
+      <Link href={"/experiment"}>experiment</Link>
     </div>
   );
 };
