@@ -1,12 +1,34 @@
 "use client";
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
+
+import { csvParseRows, tsvParseRows } from "d3-dsv";
 
 const DataForm: React.FC = () => {
+  const supabase = createClient()
+  const [userId, setUserId] = useState("")
   const [isTSV, setIsTSV] = useState<boolean>(true);
   const [data, setData] = useState<string>("");
   const router = useRouter();
+
+  useEffect(() => {
+    const getUserId = async () => {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+      if (userError || !user) {
+        alert(`ユーザー情報の取得に失敗しました: ${userError?.message}`);
+        return;
+      } else {
+        setUserId(user.id);
+      }
+    };
+    getUserId();
+  }, []);
 
   const handleToggle = (format: "csv" | "tsv"): void => {
     setIsTSV(format === "tsv");
@@ -16,20 +38,63 @@ const DataForm: React.FC = () => {
     setData(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submitted Data:", data);
-    console.log("Format:", isTSV ? "TSV" : "CSV");
-    // ここでデータを送信する
-    router.push("/");
+    
+    if (!userId) {
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+      if (userError || !user) {
+        alert(`ユーザー情報の取得に失敗しました: ${userError?.message}`);
+      } else{
+        setUserId(user.id)
+      }
+    }
+
+    const parsedData = isTSV
+      ? tsvParseRows(data.trim(), (row, i) => ({
+          user_id: userId,
+          word: row[0] || "",
+          meaning: row[1] || "",
+          example: row[2] || "",
+          example_translation: row[3] || "",
+          memo: row[4] || "",
+          index: row[5] ? parseInt(row[5], 10) : 0,
+        }))
+      : csvParseRows(data.trim(), (row, i) => ({
+          user_id: userId,
+          word: row[0] || "",
+          meaning: row[1] || "",
+          example: row[2] || "",
+          example_translation: row[3] || "",
+          memo: row[4] || "",
+          index: row[5] ? parseInt(row[5], 10) : 0,
+        }));
+    console.log(parsedData)
+    const { error } = await supabase.from("words").insert(parsedData);
+    if (error) {
+      alert(`単語の保存に失敗しました: ${error.message}`)
+    } else {
+      router.push("/");
+    }
   };
 
   return (
-    <div className="py-4 md:px-6 px-4 mx-auto max-w-3xl">
+    <div className="py-4 xs:px-5 px-3 mx-auto max-w-3xl">
       <div className="px-1 my-2">
-        <Link href="/new" className="hover:opacity-65 transition duration-300 ">
-          ⬅ 戻る
-        </Link>
+      <Link
+            href="/new"
+            className="
+              text-gray-500 rounded-2xl
+              p-1 px-2 w-fit
+              hover:text-gray-700 hover:bg-gray-200 transition duration-200 
+              flex items-center space-x-1"
+          >
+            <ArrowUturnLeftIcon className="h-4" />
+            <div>戻る</div>
+          </Link>
       </div>
       <form
         onSubmit={handleSubmit}
@@ -40,7 +105,7 @@ const DataForm: React.FC = () => {
           <button
             type="button"
             onClick={() => handleToggle("tsv")}
-            className={`px-4 py-2 rounded-md font-medium ${
+            className={`px-4 py-2 rounded-lg font-medium transition-all ease-out ${
               isTSV ? "bg-black text-white" : "bg-gray-300 text-black"
             }`}
           >
@@ -49,7 +114,7 @@ const DataForm: React.FC = () => {
           <button
             type="button"
             onClick={() => handleToggle("csv")}
-            className={`px-4 py-2 rounded-md font-medium ${
+            className={`px-4 py-2 rounded-lg font-medium transition-all ease-out ${
               !isTSV ? "bg-black text-white" : "bg-gray-300 text-black"
             }`}
           >
@@ -71,18 +136,19 @@ const DataForm: React.FC = () => {
           )}
         </p>
         <textarea
-          className="min-h-80 w-full p-3 h-32 text-gray-800 border border-gray-400 rounded-md focus:outline-none focus:border-black"
+          className="h-80 w-full p-3 h-32 text-gray-800 border border-gray-400 rounded-md focus:outline-none focus:border-black"
           placeholder={
             isTSV
-              ? "word1   meaning1   sentence1   sentence_translation1   memo1\nword2   meaning2   sentence2   sentence_translation2   memo2"
-              : "word1,meaning1,sentence1,sentence_translation1,memo1\nword2,meaning2,sentence2,sentence_translation2,memo2"
+              ? "word1   meaning1   sentence1   sentence_translation1   memo1   priority1\nword2   meaning2   sentence2   sentence_translation2   memo2   priority2"
+              : "word1,meaning1,sentence1,sentence_translation1,memo1,priority1\nword2,meaning2,sentence2,sentence_translation2,memo2,priority2"
           }
           value={data}
           onChange={handleChange}
+          required
         />
         <button
           type="submit"
-          className="w-2/3 mt-4 px-6 py-2 bg-black text-white font-semibold rounded-md hover:opacity-75 focus:outline-none transition"
+          className="w-2/3 mt-4 py-3 bg-black text-white font-semibold rounded-full hover:opacity-75 focus:outline-none transition"
         >
           {isTSV?"TSV":"CSV"}からインポート
         </button>
