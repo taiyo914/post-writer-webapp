@@ -71,8 +71,10 @@ export default function Form() {
       } = await supabase.auth.getUser();
       if (userError || !user) {
         alert(`ユーザー情報の取得に失敗しました: ${userError?.message}`);
+        return "failed";
+      } else{
+        setUserId(user.id)
       }
-      return;
     }
 
     const { error: insertError } = await supabase
@@ -80,22 +82,26 @@ export default function Form() {
       .insert([{ ...data, user_id: userId }]);
     if (insertError) {
       alert("単語の追加に失敗しました...: " + insertError.message);
+      return "failed"
     } else {
-      setFormData(initialValue);
-      alert("単語が登録されました！");
+      return "succeeded"
     }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await saveDataToDatabase(formData);
-    router.push("/");
+    const result = await saveDataToDatabase(formData);
+    if (result === "succeeded") {
+      router.push("/");
+    }
   };
 
   const handleSubmitAndContinue = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    await saveDataToDatabase(formData);
-    setFormData(initialValue);
+    const result = await saveDataToDatabase(formData);
+    if(result === "succeeded") {
+      alert("単語の追加に成功しました。次の単語を入力してください")
+      setFormData(initialValue);}
   };
 
   return (
@@ -116,7 +122,7 @@ export default function Form() {
           <Link
             href="new/import"
             className="
-              p-3 rounded-lg shadow
+              p-3 rounded-lg font-semibold
               bg-gray-900 text-white 
               shadow 
               hover:bg-gray-700 transition duration-300
