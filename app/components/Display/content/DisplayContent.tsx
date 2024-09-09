@@ -28,11 +28,13 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
 
   useEffect(() => {
     // ZustandにuserIdとuserWordsSettingsをセット
+    // リロードすると初期化されちゃうからもしかしてZustand使えない...??
     setUserId(userId);
     setUserWordsSettings(initialUserWordsSettings);
     setIsSettingsInitialized(true); // 初期設定が完了したらフラグをtrueに
   }, [userId, initialUserWordsSettings]);
 
+  // 単語を取得する関数
   const fetchWords = async () => {
     try {
       const response = await fetch("/api/getWords", {
@@ -49,7 +51,6 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
       if (response.ok) {
         setWords(data.words);
         setTotalWords(data.totalWords);
-//追加
         setFetchingKey(prevKey => prevKey + 1); // フェッチ後にキーを更新してアニメーションをトリガー
       
       } else {
@@ -60,6 +61,7 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
     } 
   };
 
+  //ページネーションを更新する関数
   const updatePageOffsetInSupabase = useCallback(
     debounce(async (newOffset) => {
       try {
@@ -70,21 +72,24 @@ const DisplayContent = ({ initialWords, userId, initialUserWordsSettings }: Init
           .eq("user_id", userId);
         if (error) {
           console.error("Error updating page_offset in Supabase:", error.message);
-        } 
+        } else{
+          console.log("デバウンズが実行されました")
+        }
       } catch (error) {
         console.error("Error:", error);
       }
-    }, 3000), //3秒後にデバウンズ
+    }, 500), //0.5秒後にデバウンズ
     [userId]
   );
 
   useEffect(() => {
-    if (isSettingsInitialized) {
+    // if (isSettingsInitialized) {
       fetchWords();
       updatePageOffsetInSupabase(userWordsSettings.page_offset);
-      // 3秒デバウンズすることで3秒以内なら何回page_offsetが更新されてもfetchせず、最後の更新から3秒間経ってからfetchする
-      // これにより連続したデータの送信を防ぐことができる
-    }
+      // 0.5秒デバウンズすることで0.5秒以内にpage_offsetが更新されてもfetchせず、最後の更新から0.5秒間経ってからfetchする
+      // これにより連続クリックによるデータの送信を防ぐことができる
+      // でもこれだと3秒以内に/reviewに移ったときちゃんと反映されるのか？
+    // }
   }, [userWordsSettings, isSettingsInitialized]);
 
   return (
