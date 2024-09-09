@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import SettingsModal from "./SettingsModal";
 import DisplayHeader from "./header/DisplayHeader";
 import CardsDisplay from "./content/CardsDisplay";
